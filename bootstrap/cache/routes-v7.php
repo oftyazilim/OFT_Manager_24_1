@@ -30,7 +30,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::mM5Llwz2XXJwyH60',
+            '_route' => 'generated::2wdrwoRlgp8fke8J',
           ),
           1 => NULL,
           2 => 
@@ -140,7 +140,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::6s60X7Bc4VewJ8uW',
+            '_route' => 'generated::UXIRE1JQjuaiGyXR',
           ),
           1 => NULL,
           2 => 
@@ -236,7 +236,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::OaB9Bl0dEeKMJp7m',
+            '_route' => 'generated::6UQx0T2Nl1YDOEeF',
           ),
           1 => NULL,
           2 => 
@@ -309,7 +309,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::TvWaWIJI9jdw9xtz',
+            '_route' => 'generated::vHnrpJZwfAoSxjSX',
           ),
           1 => NULL,
           2 => 
@@ -439,7 +439,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::JnyoiLbdPbkMPYhc',
+            '_route' => 'generated::rMfdxFY0C2zCSWHy',
           ),
           1 => NULL,
           2 => 
@@ -556,7 +556,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::XtQIydVKNNCRJtxt',
+            '_route' => 'generated::P7VdrhGFkCWSLVTY',
           ),
           1 => NULL,
           2 => 
@@ -576,7 +576,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::NKOh6JoHFXNV9ylX',
+            '_route' => 'generated::rCvRbxnOzFLiz0SE',
           ),
           1 => NULL,
           2 => 
@@ -673,7 +673,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::qmUFP7QwT5EQpGOd',
+            '_route' => 'generated::aNyQnx4B2nFtfKAc',
           ),
           1 => NULL,
           2 => 
@@ -1157,7 +1157,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::ejxGZZwtvGA43uOq',
+            '_route' => 'generated::dyUzsyt8ymnmhDdk',
           ),
           1 => NULL,
           2 => 
@@ -1176,7 +1176,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::S7OADki4LWG8YRbD',
+            '_route' => 'generated::r9ZgcKpgTe9K2B5W',
           ),
           1 => NULL,
           2 => 
@@ -1195,7 +1195,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::2jdg1NpWYsQvJ2kM',
+            '_route' => 'generated::G2hFwodvm0ydOw7B',
           ),
           1 => NULL,
           2 => 
@@ -1215,7 +1215,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::L1CzjOKR6H8gBu9x',
+            '_route' => 'generated::yoLKJ8ET9Ci588lr',
           ),
           1 => NULL,
           2 => 
@@ -1235,7 +1235,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::KOEohgASGMs5LotM',
+            '_route' => 'generated::RcictQY2Z7RSExY6',
           ),
           1 => NULL,
           2 => 
@@ -1255,7 +1255,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::Zb3G7zZno6smROmp',
+            '_route' => 'generated::u2Y5A7LAwaLMH3Ed',
           ),
           1 => NULL,
           2 => 
@@ -1275,7 +1275,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::tEd6fWA6m1XIkMbW',
+            '_route' => 'generated::jJkcMRqbCTClB2Iu',
           ),
           1 => NULL,
           2 => 
@@ -1315,7 +1315,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::oIKsDsKsIyP0lG8S',
+            '_route' => 'generated::LS8NolKRtUsjPoaC',
           ),
           1 => NULL,
           2 => 
@@ -1546,7 +1546,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::zjzag8ppLkRi2fbw',
+            '_route' => 'generated::ddC9tElXJcGsTohl',
           ),
           1 => 
           array (
@@ -1833,7 +1833,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::oWE0FFIw4HbVFWzJ',
+            '_route' => 'generated::BFIsGdsT7YmsvoTj',
           ),
           1 => 
           array (
@@ -1856,7 +1856,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::KkUtO6vTJSPmyORd',
+            '_route' => 'generated::JKwzAWVa2hyERL67',
           ),
           1 => 
           array (
@@ -1878,7 +1878,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::SFDpz44dlbGBvMSl',
+            '_route' => 'generated::alHYr4R42BEUoquG',
           ),
           1 => 
           array (
@@ -1901,7 +1901,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::x5XIiCrRj76S7Och',
+            '_route' => 'generated::MqwowxSWsxIFa8WS',
           ),
           1 => 
           array (
@@ -1923,7 +1923,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::pEThmXZoDGZM3kvh',
+            '_route' => 'generated::3faraYtVDEXvqA0F',
           ),
           1 => 
           array (
@@ -1946,7 +1946,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::PihM3HoxRiYyFeLY',
+            '_route' => 'generated::01NcEjtLZ4OQ7nhL',
           ),
           1 => 
           array (
@@ -2017,7 +2017,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::mM5Llwz2XXJwyH60' => 
+    'generated::2wdrwoRlgp8fke8J' => 
     array (
       'methods' => 
       array (
@@ -2040,7 +2040,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::mM5Llwz2XXJwyH60',
+        'as' => 'generated::2wdrwoRlgp8fke8J',
       ),
       'fallback' => false,
       'defaults' => 
@@ -2287,7 +2287,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::6s60X7Bc4VewJ8uW' => 
+    'generated::UXIRE1JQjuaiGyXR' => 
     array (
       'methods' => 
       array (
@@ -2309,7 +2309,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::6s60X7Bc4VewJ8uW',
+        'as' => 'generated::UXIRE1JQjuaiGyXR',
       ),
       'fallback' => false,
       'defaults' => 
@@ -2520,7 +2520,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::OaB9Bl0dEeKMJp7m' => 
+    'generated::6UQx0T2Nl1YDOEeF' => 
     array (
       'methods' => 
       array (
@@ -2543,7 +2543,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::OaB9Bl0dEeKMJp7m',
+        'as' => 'generated::6UQx0T2Nl1YDOEeF',
       ),
       'fallback' => false,
       'defaults' => 
@@ -2675,7 +2675,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::TvWaWIJI9jdw9xtz' => 
+    'generated::vHnrpJZwfAoSxjSX' => 
     array (
       'methods' => 
       array (
@@ -2698,7 +2698,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::TvWaWIJI9jdw9xtz',
+        'as' => 'generated::vHnrpJZwfAoSxjSX',
       ),
       'fallback' => false,
       'defaults' => 
@@ -2951,7 +2951,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::JnyoiLbdPbkMPYhc' => 
+    'generated::rMfdxFY0C2zCSWHy' => 
     array (
       'methods' => 
       array (
@@ -2974,7 +2974,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::JnyoiLbdPbkMPYhc',
+        'as' => 'generated::rMfdxFY0C2zCSWHy',
       ),
       'fallback' => false,
       'defaults' => 
@@ -3262,7 +3262,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::XtQIydVKNNCRJtxt' => 
+    'generated::P7VdrhGFkCWSLVTY' => 
     array (
       'methods' => 
       array (
@@ -3274,7 +3274,7 @@ app('router')->setCompiledRoutes(
       array (
         'uses' => 'Livewire\\Mechanisms\\FrontendAssets\\FrontendAssets@returnJavaScriptAsFile',
         'controller' => 'Livewire\\Mechanisms\\FrontendAssets\\FrontendAssets@returnJavaScriptAsFile',
-        'as' => 'generated::XtQIydVKNNCRJtxt',
+        'as' => 'generated::P7VdrhGFkCWSLVTY',
       ),
       'fallback' => false,
       'defaults' => 
@@ -3290,7 +3290,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::NKOh6JoHFXNV9ylX' => 
+    'generated::rCvRbxnOzFLiz0SE' => 
     array (
       'methods' => 
       array (
@@ -3302,7 +3302,7 @@ app('router')->setCompiledRoutes(
       array (
         'uses' => 'Livewire\\Mechanisms\\FrontendAssets\\FrontendAssets@maps',
         'controller' => 'Livewire\\Mechanisms\\FrontendAssets\\FrontendAssets@maps',
-        'as' => 'generated::NKOh6JoHFXNV9ylX',
+        'as' => 'generated::rCvRbxnOzFLiz0SE',
       ),
       'fallback' => false,
       'defaults' => 
@@ -3482,7 +3482,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::qmUFP7QwT5EQpGOd' => 
+    'generated::aNyQnx4B2nFtfKAc' => 
     array (
       'methods' => 
       array (
@@ -3497,7 +3497,7 @@ app('router')->setCompiledRoutes(
 
                     return \\Illuminate\\Support\\Facades\\View::file(\'C:\\\\OFT\\\\OFT_Manager_24\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Configuration\'.\'/../resources/health-up.blade.php\');
                 }";s:5:"scope";s:54:"Illuminate\\Foundation\\Configuration\\ApplicationBuilder";s:4:"this";N;s:4:"self";s:32:"000000000000082d0000000000000000";}}',
-        'as' => 'generated::qmUFP7QwT5EQpGOd',
+        'as' => 'generated::aNyQnx4B2nFtfKAc',
       ),
       'fallback' => false,
       'defaults' => 
@@ -3710,7 +3710,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::zjzag8ppLkRi2fbw' => 
+    'generated::ddC9tElXJcGsTohl' => 
     array (
       'methods' => 
       array (
@@ -3734,7 +3734,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::zjzag8ppLkRi2fbw',
+        'as' => 'generated::ddC9tElXJcGsTohl',
       ),
       'fallback' => false,
       'defaults' => 
@@ -4722,8 +4722,8 @@ app('router')->setCompiledRoutes(
           3 => 'verified',
         ),
         'as' => 'stok-list.index',
-        'uses' => 'App\\Http\\Controllers\\stoklar\\StoklarController@index',
-        'controller' => 'App\\Http\\Controllers\\stoklar\\StoklarController@index',
+        'uses' => 'App\\Http\\Controllers\\stoklar\\Kalite2Controller@index',
+        'controller' => 'App\\Http\\Controllers\\stoklar\\Kalite2Controller@index',
         'namespace' => NULL,
         'prefix' => '/',
         'where' => 
@@ -4762,8 +4762,8 @@ app('router')->setCompiledRoutes(
           3 => 'verified',
         ),
         'as' => 'stok-list.create',
-        'uses' => 'App\\Http\\Controllers\\stoklar\\StoklarController@create',
-        'controller' => 'App\\Http\\Controllers\\stoklar\\StoklarController@create',
+        'uses' => 'App\\Http\\Controllers\\stoklar\\Kalite2Controller@create',
+        'controller' => 'App\\Http\\Controllers\\stoklar\\Kalite2Controller@create',
         'namespace' => NULL,
         'prefix' => '/',
         'where' => 
@@ -4801,8 +4801,8 @@ app('router')->setCompiledRoutes(
           3 => 'verified',
         ),
         'as' => 'stok-list.store',
-        'uses' => 'App\\Http\\Controllers\\stoklar\\StoklarController@store',
-        'controller' => 'App\\Http\\Controllers\\stoklar\\StoklarController@store',
+        'uses' => 'App\\Http\\Controllers\\stoklar\\Kalite2Controller@store',
+        'controller' => 'App\\Http\\Controllers\\stoklar\\Kalite2Controller@store',
         'namespace' => NULL,
         'prefix' => '/',
         'where' => 
@@ -4841,8 +4841,8 @@ app('router')->setCompiledRoutes(
           3 => 'verified',
         ),
         'as' => 'stok-list.show',
-        'uses' => 'App\\Http\\Controllers\\stoklar\\StoklarController@show',
-        'controller' => 'App\\Http\\Controllers\\stoklar\\StoklarController@show',
+        'uses' => 'App\\Http\\Controllers\\stoklar\\Kalite2Controller@show',
+        'controller' => 'App\\Http\\Controllers\\stoklar\\Kalite2Controller@show',
         'namespace' => NULL,
         'prefix' => '/',
         'where' => 
@@ -4881,8 +4881,8 @@ app('router')->setCompiledRoutes(
           3 => 'verified',
         ),
         'as' => 'stok-list.edit',
-        'uses' => 'App\\Http\\Controllers\\stoklar\\StoklarController@edit',
-        'controller' => 'App\\Http\\Controllers\\stoklar\\StoklarController@edit',
+        'uses' => 'App\\Http\\Controllers\\stoklar\\Kalite2Controller@edit',
+        'controller' => 'App\\Http\\Controllers\\stoklar\\Kalite2Controller@edit',
         'namespace' => NULL,
         'prefix' => '/',
         'where' => 
@@ -4921,8 +4921,8 @@ app('router')->setCompiledRoutes(
           3 => 'verified',
         ),
         'as' => 'stok-list.update',
-        'uses' => 'App\\Http\\Controllers\\stoklar\\StoklarController@update',
-        'controller' => 'App\\Http\\Controllers\\stoklar\\StoklarController@update',
+        'uses' => 'App\\Http\\Controllers\\stoklar\\Kalite2Controller@update',
+        'controller' => 'App\\Http\\Controllers\\stoklar\\Kalite2Controller@update',
         'namespace' => NULL,
         'prefix' => '/',
         'where' => 
@@ -4960,8 +4960,8 @@ app('router')->setCompiledRoutes(
           3 => 'verified',
         ),
         'as' => 'stok-list.destroy',
-        'uses' => 'App\\Http\\Controllers\\stoklar\\StoklarController@destroy',
-        'controller' => 'App\\Http\\Controllers\\stoklar\\StoklarController@destroy',
+        'uses' => 'App\\Http\\Controllers\\stoklar\\Kalite2Controller@destroy',
+        'controller' => 'App\\Http\\Controllers\\stoklar\\Kalite2Controller@destroy',
         'namespace' => NULL,
         'prefix' => '/',
         'where' => 
@@ -5039,8 +5039,8 @@ app('router')->setCompiledRoutes(
           2 => 'Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession',
           3 => 'verified',
         ),
-        'uses' => 'App\\Http\\Controllers\\stoklar\\StoklarController@getKalite2',
-        'controller' => 'App\\Http\\Controllers\\stoklar\\StoklarController@getKalite2',
+        'uses' => 'App\\Http\\Controllers\\stoklar\\Kalite2Controller@getKalite2',
+        'controller' => 'App\\Http\\Controllers\\stoklar\\Kalite2Controller@getKalite2',
         'namespace' => NULL,
         'prefix' => '',
         'where' => 
@@ -5079,8 +5079,8 @@ app('router')->setCompiledRoutes(
           2 => 'Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession',
           3 => 'verified',
         ),
-        'uses' => 'App\\Http\\Controllers\\stoklar\\StoklarController@getKalite2liste',
-        'controller' => 'App\\Http\\Controllers\\stoklar\\StoklarController@getKalite2liste',
+        'uses' => 'App\\Http\\Controllers\\stoklar\\Kalite2Controller@getKalite2liste',
+        'controller' => 'App\\Http\\Controllers\\stoklar\\Kalite2Controller@getKalite2liste',
         'namespace' => NULL,
         'prefix' => '',
         'where' => 
@@ -5119,8 +5119,8 @@ app('router')->setCompiledRoutes(
           2 => 'Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession',
           3 => 'verified',
         ),
-        'uses' => 'App\\Http\\Controllers\\stoklar\\StoklarController@getKalite2s',
-        'controller' => 'App\\Http\\Controllers\\stoklar\\StoklarController@getKalite2s',
+        'uses' => 'App\\Http\\Controllers\\stoklar\\Kalite2Controller@getKalite2s',
+        'controller' => 'App\\Http\\Controllers\\stoklar\\Kalite2Controller@getKalite2s',
         'namespace' => NULL,
         'prefix' => '',
         'where' => 
@@ -5142,7 +5142,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::ejxGZZwtvGA43uOq' => 
+    'generated::dyUzsyt8ymnmhDdk' => 
     array (
       'methods' => 
       array (
@@ -5158,14 +5158,14 @@ app('router')->setCompiledRoutes(
           2 => 'Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession',
           3 => 'verified',
         ),
-        'uses' => 'App\\Http\\Controllers\\stoklar\\StoklarController@ekleKalite2',
-        'controller' => 'App\\Http\\Controllers\\stoklar\\StoklarController@ekleKalite2',
+        'uses' => 'App\\Http\\Controllers\\stoklar\\Kalite2Controller@ekleKalite2',
+        'controller' => 'App\\Http\\Controllers\\stoklar\\Kalite2Controller@ekleKalite2',
         'namespace' => NULL,
         'prefix' => '',
         'where' => 
         array (
         ),
-        'as' => 'generated::ejxGZZwtvGA43uOq',
+        'as' => 'generated::dyUzsyt8ymnmhDdk',
       ),
       'fallback' => false,
       'defaults' => 
@@ -5181,7 +5181,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::S7OADki4LWG8YRbD' => 
+    'generated::r9ZgcKpgTe9K2B5W' => 
     array (
       'methods' => 
       array (
@@ -5197,14 +5197,14 @@ app('router')->setCompiledRoutes(
           2 => 'Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession',
           3 => 'verified',
         ),
-        'uses' => 'App\\Http\\Controllers\\stoklar\\StoklarController@ekleKalite2s',
-        'controller' => 'App\\Http\\Controllers\\stoklar\\StoklarController@ekleKalite2s',
+        'uses' => 'App\\Http\\Controllers\\stoklar\\Kalite2Controller@ekleKalite2s',
+        'controller' => 'App\\Http\\Controllers\\stoklar\\Kalite2Controller@ekleKalite2s',
         'namespace' => NULL,
         'prefix' => '',
         'where' => 
         array (
         ),
-        'as' => 'generated::S7OADki4LWG8YRbD',
+        'as' => 'generated::r9ZgcKpgTe9K2B5W',
       ),
       'fallback' => false,
       'defaults' => 
@@ -5220,7 +5220,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::pEThmXZoDGZM3kvh' => 
+    'generated::3faraYtVDEXvqA0F' => 
     array (
       'methods' => 
       array (
@@ -5237,14 +5237,14 @@ app('router')->setCompiledRoutes(
           2 => 'Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession',
           3 => 'verified',
         ),
-        'uses' => 'App\\Http\\Controllers\\stoklar\\StoklarController@paketNoAl',
-        'controller' => 'App\\Http\\Controllers\\stoklar\\StoklarController@paketNoAl',
+        'uses' => 'App\\Http\\Controllers\\stoklar\\Kalite2Controller@paketNoAl',
+        'controller' => 'App\\Http\\Controllers\\stoklar\\Kalite2Controller@paketNoAl',
         'namespace' => NULL,
         'prefix' => '',
         'where' => 
         array (
         ),
-        'as' => 'generated::pEThmXZoDGZM3kvh',
+        'as' => 'generated::3faraYtVDEXvqA0F',
       ),
       'fallback' => false,
       'defaults' => 
@@ -5260,7 +5260,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::PihM3HoxRiYyFeLY' => 
+    'generated::01NcEjtLZ4OQ7nhL' => 
     array (
       'methods' => 
       array (
@@ -5277,14 +5277,14 @@ app('router')->setCompiledRoutes(
           2 => 'Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession',
           3 => 'verified',
         ),
-        'uses' => 'App\\Http\\Controllers\\stoklar\\StoklarController@paketNoAls',
-        'controller' => 'App\\Http\\Controllers\\stoklar\\StoklarController@paketNoAls',
+        'uses' => 'App\\Http\\Controllers\\stoklar\\Kalite2Controller@paketNoAls',
+        'controller' => 'App\\Http\\Controllers\\stoklar\\Kalite2Controller@paketNoAls',
         'namespace' => NULL,
         'prefix' => '',
         'where' => 
         array (
         ),
-        'as' => 'generated::PihM3HoxRiYyFeLY',
+        'as' => 'generated::01NcEjtLZ4OQ7nhL',
       ),
       'fallback' => false,
       'defaults' => 
@@ -5300,7 +5300,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::oWE0FFIw4HbVFWzJ' => 
+    'generated::BFIsGdsT7YmsvoTj' => 
     array (
       'methods' => 
       array (
@@ -5317,14 +5317,14 @@ app('router')->setCompiledRoutes(
           2 => 'Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession',
           3 => 'verified',
         ),
-        'uses' => 'App\\Http\\Controllers\\stoklar\\StoklarController@silKalite2',
-        'controller' => 'App\\Http\\Controllers\\stoklar\\StoklarController@silKalite2',
+        'uses' => 'App\\Http\\Controllers\\stoklar\\Kalite2Controller@silKalite2',
+        'controller' => 'App\\Http\\Controllers\\stoklar\\Kalite2Controller@silKalite2',
         'namespace' => NULL,
         'prefix' => '',
         'where' => 
         array (
         ),
-        'as' => 'generated::oWE0FFIw4HbVFWzJ',
+        'as' => 'generated::BFIsGdsT7YmsvoTj',
       ),
       'fallback' => false,
       'defaults' => 
@@ -5340,7 +5340,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::SFDpz44dlbGBvMSl' => 
+    'generated::alHYr4R42BEUoquG' => 
     array (
       'methods' => 
       array (
@@ -5357,14 +5357,14 @@ app('router')->setCompiledRoutes(
           2 => 'Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession',
           3 => 'verified',
         ),
-        'uses' => 'App\\Http\\Controllers\\stoklar\\StoklarController@silKalite2s',
-        'controller' => 'App\\Http\\Controllers\\stoklar\\StoklarController@silKalite2s',
+        'uses' => 'App\\Http\\Controllers\\stoklar\\Kalite2Controller@silKalite2s',
+        'controller' => 'App\\Http\\Controllers\\stoklar\\Kalite2Controller@silKalite2s',
         'namespace' => NULL,
         'prefix' => '',
         'where' => 
         array (
         ),
-        'as' => 'generated::SFDpz44dlbGBvMSl',
+        'as' => 'generated::alHYr4R42BEUoquG',
       ),
       'fallback' => false,
       'defaults' => 
@@ -5380,7 +5380,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::KkUtO6vTJSPmyORd' => 
+    'generated::JKwzAWVa2hyERL67' => 
     array (
       'methods' => 
       array (
@@ -5396,14 +5396,14 @@ app('router')->setCompiledRoutes(
           2 => 'Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession',
           3 => 'verified',
         ),
-        'uses' => 'App\\Http\\Controllers\\stoklar\\StoklarController@guncelleKalite2',
-        'controller' => 'App\\Http\\Controllers\\stoklar\\StoklarController@guncelleKalite2',
+        'uses' => 'App\\Http\\Controllers\\stoklar\\Kalite2Controller@guncelleKalite2',
+        'controller' => 'App\\Http\\Controllers\\stoklar\\Kalite2Controller@guncelleKalite2',
         'namespace' => NULL,
         'prefix' => '',
         'where' => 
         array (
         ),
-        'as' => 'generated::KkUtO6vTJSPmyORd',
+        'as' => 'generated::JKwzAWVa2hyERL67',
       ),
       'fallback' => false,
       'defaults' => 
@@ -5419,7 +5419,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::x5XIiCrRj76S7Och' => 
+    'generated::MqwowxSWsxIFa8WS' => 
     array (
       'methods' => 
       array (
@@ -5435,14 +5435,14 @@ app('router')->setCompiledRoutes(
           2 => 'Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession',
           3 => 'verified',
         ),
-        'uses' => 'App\\Http\\Controllers\\stoklar\\StoklarController@guncelleKalite2s',
-        'controller' => 'App\\Http\\Controllers\\stoklar\\StoklarController@guncelleKalite2s',
+        'uses' => 'App\\Http\\Controllers\\stoklar\\Kalite2Controller@guncelleKalite2s',
+        'controller' => 'App\\Http\\Controllers\\stoklar\\Kalite2Controller@guncelleKalite2s',
         'namespace' => NULL,
         'prefix' => '',
         'where' => 
         array (
         ),
-        'as' => 'generated::x5XIiCrRj76S7Och',
+        'as' => 'generated::MqwowxSWsxIFa8WS',
       ),
       'fallback' => false,
       'defaults' => 
@@ -5458,7 +5458,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::2jdg1NpWYsQvJ2kM' => 
+    'generated::G2hFwodvm0ydOw7B' => 
     array (
       'methods' => 
       array (
@@ -5475,14 +5475,14 @@ app('router')->setCompiledRoutes(
           2 => 'Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession',
           3 => 'verified',
         ),
-        'uses' => 'App\\Http\\Controllers\\stoklar\\StoklarController@listeleKalite2',
-        'controller' => 'App\\Http\\Controllers\\stoklar\\StoklarController@listeleKalite2',
+        'uses' => 'App\\Http\\Controllers\\stoklar\\Kalite2Controller@listeleKalite2',
+        'controller' => 'App\\Http\\Controllers\\stoklar\\Kalite2Controller@listeleKalite2',
         'namespace' => NULL,
         'prefix' => '',
         'where' => 
         array (
         ),
-        'as' => 'generated::2jdg1NpWYsQvJ2kM',
+        'as' => 'generated::G2hFwodvm0ydOw7B',
       ),
       'fallback' => false,
       'defaults' => 
@@ -5498,7 +5498,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::L1CzjOKR6H8gBu9x' => 
+    'generated::yoLKJ8ET9Ci588lr' => 
     array (
       'methods' => 
       array (
@@ -5515,14 +5515,14 @@ app('router')->setCompiledRoutes(
           2 => 'Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession',
           3 => 'verified',
         ),
-        'uses' => 'App\\Http\\Controllers\\stoklar\\StoklarController@listeleKalite2s',
-        'controller' => 'App\\Http\\Controllers\\stoklar\\StoklarController@listeleKalite2s',
+        'uses' => 'App\\Http\\Controllers\\stoklar\\Kalite2Controller@listeleKalite2s',
+        'controller' => 'App\\Http\\Controllers\\stoklar\\Kalite2Controller@listeleKalite2s',
         'namespace' => NULL,
         'prefix' => '',
         'where' => 
         array (
         ),
-        'as' => 'generated::L1CzjOKR6H8gBu9x',
+        'as' => 'generated::yoLKJ8ET9Ci588lr',
       ),
       'fallback' => false,
       'defaults' => 
@@ -5538,7 +5538,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::KOEohgASGMs5LotM' => 
+    'generated::RcictQY2Z7RSExY6' => 
     array (
       'methods' => 
       array (
@@ -5555,14 +5555,14 @@ app('router')->setCompiledRoutes(
           2 => 'Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession',
           3 => 'verified',
         ),
-        'uses' => 'App\\Http\\Controllers\\stoklar\\StoklarController@getUserInfo',
-        'controller' => 'App\\Http\\Controllers\\stoklar\\StoklarController@getUserInfo',
+        'uses' => 'App\\Http\\Controllers\\stoklar\\Kalite2Controller@getUserInfo',
+        'controller' => 'App\\Http\\Controllers\\stoklar\\Kalite2Controller@getUserInfo',
         'namespace' => NULL,
         'prefix' => '',
         'where' => 
         array (
         ),
-        'as' => 'generated::KOEohgASGMs5LotM',
+        'as' => 'generated::RcictQY2Z7RSExY6',
       ),
       'fallback' => false,
       'defaults' => 
@@ -5578,7 +5578,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::Zb3G7zZno6smROmp' => 
+    'generated::u2Y5A7LAwaLMH3Ed' => 
     array (
       'methods' => 
       array (
@@ -5595,14 +5595,14 @@ app('router')->setCompiledRoutes(
           2 => 'Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession',
           3 => 'verified',
         ),
-        'uses' => 'App\\Http\\Controllers\\stoklar\\StoklarController@getMamulKodu',
-        'controller' => 'App\\Http\\Controllers\\stoklar\\StoklarController@getMamulKodu',
+        'uses' => 'App\\Http\\Controllers\\stoklar\\Kalite2Controller@getMamulKodu',
+        'controller' => 'App\\Http\\Controllers\\stoklar\\Kalite2Controller@getMamulKodu',
         'namespace' => NULL,
         'prefix' => '',
         'where' => 
         array (
         ),
-        'as' => 'generated::Zb3G7zZno6smROmp',
+        'as' => 'generated::u2Y5A7LAwaLMH3Ed',
       ),
       'fallback' => false,
       'defaults' => 
@@ -5618,7 +5618,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::tEd6fWA6m1XIkMbW' => 
+    'generated::jJkcMRqbCTClB2Iu' => 
     array (
       'methods' => 
       array (
@@ -5635,14 +5635,14 @@ app('router')->setCompiledRoutes(
           2 => 'Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession',
           3 => 'verified',
         ),
-        'uses' => 'App\\Http\\Controllers\\stoklar\\StoklarController@getMamulKodus',
-        'controller' => 'App\\Http\\Controllers\\stoklar\\StoklarController@getMamulKodus',
+        'uses' => 'App\\Http\\Controllers\\stoklar\\Kalite2Controller@getMamulKodus',
+        'controller' => 'App\\Http\\Controllers\\stoklar\\Kalite2Controller@getMamulKodus',
         'namespace' => NULL,
         'prefix' => '',
         'where' => 
         array (
         ),
-        'as' => 'generated::tEd6fWA6m1XIkMbW',
+        'as' => 'generated::jJkcMRqbCTClB2Iu',
       ),
       'fallback' => false,
       'defaults' => 
@@ -5698,7 +5698,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::oIKsDsKsIyP0lG8S' => 
+    'generated::LS8NolKRtUsjPoaC' => 
     array (
       'methods' => 
       array (
@@ -5715,14 +5715,14 @@ app('router')->setCompiledRoutes(
           2 => 'Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession',
           3 => 'verified',
         ),
-        'uses' => 'App\\Http\\Controllers\\stoklar\\StoklarController@veriAl',
-        'controller' => 'App\\Http\\Controllers\\stoklar\\StoklarController@veriAl',
+        'uses' => 'App\\Http\\Controllers\\stoklar\\Kalite2Controller@veriAl',
+        'controller' => 'App\\Http\\Controllers\\stoklar\\Kalite2Controller@veriAl',
         'namespace' => NULL,
         'prefix' => '',
         'where' => 
         array (
         ),
-        'as' => 'generated::oIKsDsKsIyP0lG8S',
+        'as' => 'generated::LS8NolKRtUsjPoaC',
       ),
       'fallback' => false,
       'defaults' => 

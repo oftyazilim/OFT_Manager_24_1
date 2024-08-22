@@ -11,7 +11,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\JsonResponse;
 
-class StoklarController extends Controller
+class Kalite2Controller extends Controller
 {
   public function getKalite2()
   {
