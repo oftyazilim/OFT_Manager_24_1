@@ -25,18 +25,13 @@
       "submenu": [
         {
           "url": "stoklar/kalite2liste",
-          "name": "2. Kalite (Liste)",
+          "name": "2. Kalite (Akyazı)",
           "slug": "stoklar-kalite2liste"
         },
         {
-          "url": "stoklar/kalite2",
-          "name": "2. Kalite (Akyazı)",
-          "slug": "stoklar-kalite2"
-        },
-        {
-          "url": "stoklar/kalite2s",
+          "url": "stoklar/kalite2sliste",
           "name": "2. Kalite (Şekerpınar)",
-          "slug": "stoklar-kalite2s"
+          "slug": "stoklar-kalite2sliste"
         }
       ]
     },

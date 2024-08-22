@@ -11,6 +11,7 @@ use App\Http\Controllers\front_pages\Landing;
 use App\Http\Controllers\laravel_example\UserManagement;
 use App\Http\Controllers\satis\SatisController;
 use App\Http\Controllers\stoklar\Kalite2Controller;
+use App\Http\Controllers\stoklar\Kalite2sController;
 
 Route::get('/', [Landing::class, 'index'])->name('front-pages-landing');
 
@@ -34,30 +35,27 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
   Route::resource('/user-list', UserManagement::class);
   Route::resource('/emir-list', IsEmirleri::class);
   Route::resource('/satis-list', SatisController::class);
-  Route::resource('/stok-list', Kalite2Controller::class);
 
   Route::get('/api/emirler', [IsEmirleri::class, 'getEmirler'])->name('api.emirler');
 
-  Route::get('/stoklar/kalite2', [Kalite2Controller::class, 'getKalite2'])->name('stoklar.kalite2');
-  Route::get('/stoklar/kalite2liste', [Kalite2Controller::class, 'getKalite2liste'])->name('stoklar.kalite2liste');
 
-  Route::get('/stoklar/kalite2s', [Kalite2Controller::class, 'getKalite2s'])->name('stoklar.kalite2s');
-  Route::post('/stoklar/kalite2-ekle', [Kalite2Controller::class, 'ekleKalite2']);
-  Route::post('/stoklar/kalite2s-ekle', [Kalite2Controller::class, 'ekleKalite2s']);
-  Route::get('/paket-no-al/{hat}', [Kalite2Controller::class, 'paketNoAl']);
-  Route::get('/paket-no-als/{hat}', [Kalite2Controller::class, 'paketNoAls']);
-  Route::get('/stoklar/kalite2-sil/{id}', [Kalite2Controller::class, 'silKalite2']);
-  Route::get('/stoklar/kalite2s-sil/{id}', [Kalite2Controller::class, 'silKalite2s']);
-  Route::put('/stoklar/kalite2-guncelle/{id}', [Kalite2Controller::class, 'guncelleKalite2']);
-  Route::put('/stoklar/kalite2s-guncelle/{id}', [Kalite2Controller::class, 'guncelleKalite2s']);
-  Route::get('/stoklar/kalite2-listele', [Kalite2Controller::class, 'listeleKalite2']);
-  Route::get('/stoklar/kalite2s-listele', [Kalite2Controller::class, 'listeleKalite2s']);
-  Route::get('/user', [Kalite2Controller::class, 'getUserInfo']);
-  Route::get('/mamulkodu', [Kalite2Controller::class, 'getMamulKodu']);
-  Route::get('/mamulkodus', [Kalite2Controller::class, 'getMamulKodus']);
+
+  // 2. Kaliteler - Akyazı
+  // Route::get('/stoklar/kalite2', [Kalite2Controller::class, 'getKalite2'])->name('stoklar.kalite2');
+  Route::get('/stoklar/kalite2liste', [Kalite2Controller::class, 'getKalite2liste'])->name('stoklar.kalite2liste');
+  Route::resource('/stok-list', Kalite2Controller::class);
+  Route::get('/stok/verial', [Kalite2Controller::class, 'veriAl']);
+
+
+  // 2. Kaliteler - Şekerpınar
+  Route::get('/stoklar/kalite2sliste', [Kalite2sController::class, 'getKalite2liste'])->name('stoklar.kalite2sliste');
+  Route::resource('/stok-lists', Kalite2sController::class);
+  Route::get('/stok/verials', [Kalite2sController::class, 'veriAl']);
+
+
+
 
   Route::get('/satis/musteriSiparisleri', [SatisController::class, 'getUser'])->name('satis-musteriSiparisleri');
-  Route::get('/stok/verial', [Kalite2Controller::class, 'veriAl']);
 
   // Route::middleware([
   //   'auth:sanctum',
