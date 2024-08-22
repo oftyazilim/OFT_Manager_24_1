@@ -3,17 +3,17 @@
  */
 
 'use strict';
+//import { error } from 'jquery';
 // import { size } from 'lodash';
 import Swal from 'sweetalert2';
 
 // // Datatable (jquery)
 $(function () {
+  document.getElementById('baslik').innerHTML = 'Akyazı 2. Kalite Stok Listesi';
 
 
-document.getElementById('baslik').innerHTML = "Akyazı 2. Kalite Stok Listesi";
-var offCanvasForm = $('#offcanvasAddUser');
-
-  var dt_table = $('.datatables-kalite2');
+  var dt_table = $('.datatables-kalite2'),
+      offCanvasForm = $('#offcanvasAddRecord');
 
   $.ajaxSetup({
     headers: {
@@ -21,6 +21,8 @@ var offCanvasForm = $('#offcanvasAddUser');
     }
   });
 
+
+  
   //   // Users datatable
   if (dt_table.length) {
     var dt_record = dt_table.DataTable({
@@ -60,7 +62,7 @@ var offCanvasForm = $('#offcanvasAddUser');
               text: '<i class="ti ti-printer me-2" ></i>Print',
               className: 'dropdown-item',
               exportOptions: {
-                columns: [1, 2, 3, 4],
+                columns: [1, 2, 3, 4, 6, 7],
                 // prevent avatar to be print
                 format: {
                   body: function (inner, coldex, rowdex) {
@@ -68,7 +70,7 @@ var offCanvasForm = $('#offcanvasAddUser');
                     var el = $.parseHTML(inner);
                     var result = '';
                     $.each(el, function (index, item) {
-                      if (item.classList !== undefined && item.classList.contains('user-name')) {
+                      if (item.classList !== undefined && item.classList.contains('mamul')) {
                         result = result + item.lastChild.firstChild.textContent;
                       } else if (item.innerText === undefined) {
                         result = result + item.textContent;
@@ -98,7 +100,7 @@ var offCanvasForm = $('#offcanvasAddUser');
               text: '<i class="ti ti-file-text me-2" ></i>Csv',
               className: 'dropdown-item',
               exportOptions: {
-                columns: [1, 2, 3, 4],
+                columns: [1, 2, 3, 4, 6, 7],
                 // prevent avatar to be display
                 format: {
                   body: function (inner, coldex, rowdex) {
@@ -106,7 +108,7 @@ var offCanvasForm = $('#offcanvasAddUser');
                     var el = $.parseHTML(inner);
                     var result = '';
                     $.each(el, function (index, item) {
-                      if (item.classList !== undefined && item.classList.contains('user-name')) {
+                      if (item.classList !== undefined && item.classList.contains('mamul')) {
                         result = result + item.lastChild.firstChild.textContent;
                       } else if (item.innerText === undefined) {
                         result = result + item.textContent;
@@ -123,7 +125,7 @@ var offCanvasForm = $('#offcanvasAddUser');
               text: '<i class="ti ti-file-spreadsheet me-2"></i>Excel',
               className: 'dropdown-item',
               exportOptions: {
-                columns: [1, 2, 3, 4],
+                columns: [1, 2, 3, 4, 6, 7],
                 // prevent avatar to be display
                 format: {
                   body: function (inner, coldex, rowdex) {
@@ -131,7 +133,7 @@ var offCanvasForm = $('#offcanvasAddUser');
                     var el = $.parseHTML(inner);
                     var result = '';
                     $.each(el, function (index, item) {
-                      if (item.classList !== undefined && item.classList.contains('user-name')) {
+                      if (item.classList !== undefined && item.classList.contains('mamul')) {
                         result = result + item.lastChild.firstChild.textContent;
                       } else if (item.innerText === undefined) {
                         result = result + item.textContent;
@@ -148,7 +150,7 @@ var offCanvasForm = $('#offcanvasAddUser');
               text: '<i class="ti ti-file-code-2 me-2"></i>Pdf',
               className: 'dropdown-item',
               exportOptions: {
-                columns: [1, 2, 3, 4],
+                columns: [1, 2, 3, 4, 6, 7],
                 // prevent avatar to be display
                 format: {
                   body: function (inner, coldex, rowdex) {
@@ -156,7 +158,7 @@ var offCanvasForm = $('#offcanvasAddUser');
                     var el = $.parseHTML(inner);
                     var result = '';
                     $.each(el, function (index, item) {
-                      if (item.classList !== undefined && item.classList.contains('user-name')) {
+                      if (item.classList !== undefined && item.classList.contains('mamul')) {
                         result = result + item.lastChild.firstChild.textContent;
                       } else if (item.innerText === undefined) {
                         result = result + item.textContent;
@@ -173,7 +175,7 @@ var offCanvasForm = $('#offcanvasAddUser');
               text: '<i class="ti ti-copy me-2" ></i>Copy',
               className: 'dropdown-item',
               exportOptions: {
-                columns: [1, 2, 3, 4, 5],
+                columns: [1, 2, 3, 4, 6, 7],
                 // prevent avatar to be display
                 format: {
                   body: function (inner, coldex, rowdex) {
@@ -181,7 +183,7 @@ var offCanvasForm = $('#offcanvasAddUser');
                     var el = $.parseHTML(inner);
                     var result = '';
                     $.each(el, function (index, item) {
-                      if (item.classList !== undefined && item.classList.contains('user-name')) {
+                      if (item.classList !== undefined && item.classList.contains('mamul')) {
                         result = result + item.lastChild.firstChild.textContent;
                       } else if (item.innerText === undefined) {
                         result = result + item.textContent;
@@ -365,14 +367,21 @@ var offCanvasForm = $('#offcanvasAddUser');
           targets: -1,
           title: 'Eylemler',
           searchable: false,
+          responsivePriority: 4,
           orderable: false,
-          responsivePriority: 3,
+         // responsivePriority: 3,
           render: function (data, type, full, meta) {
             return (
               '<div class="d-flex align-items-center gap-50">' +
               `<button class="btn btn-sm btn-icon edit-record btn-text-secondary rounded-pill waves-effect" data-id="${full['id']}" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAddRecord"><i class="ti ti-edit"></i></button>` +
               `<button class="btn btn-sm btn-icon delete-record btn-text-secondary rounded-pill waves-effect" data-id="${full['id']}"><i class="ti ti-trash"></i></button>` +
-              '</div>'
+              '<button class="btn btn-sm btn-icon btn-text-secondary rounded-pill waves-effect dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="ti ti-dots-vertical"></i></button>' +
+              '<div class="dropdown-menu dropdown-menu-end m-0">' +
+              '<a href="' +
+              //userView +
+              '" class="dropdown-item">View</a>' +
+              '<a href="javascript:;" class="dropdown-item">Suspend</a>' +
+              '</div>' +              '</div>'
             );
           }
         }
@@ -429,16 +438,18 @@ var offCanvasForm = $('#offcanvasAddUser');
 
   veriAl();
 
-  function veriAl(){
+  function veriAl() {
     $.ajax({
       type: 'GET',
       url: '/stok/verial',
       success: function (response) {
         let data = response;
-          document.getElementById('toplamPaket').innerHTML = data[0] + '<span style="font-size: 14px;"> Adet</span>';
-          document.getElementById('toplamGenel').innerHTML = data[1] + '<span style="font-size: 14px;"> Kg</span>';
-          document.getElementById('toplamHr').innerHTML = Math.round(data[2]) + '<span style="font-size: 14px;"> Kg</span>';
-          document.getElementById('toplamDiger').innerHTML = Math.round(data[3]) + '<span style="font-size: 14px;"> Kg</span>';
+        document.getElementById('toplamPaket').innerHTML = data[0] + '<span style="font-size: 14px;"> Adet</span>';
+        document.getElementById('toplamGenel').innerHTML = data[1] + '<span style="font-size: 14px;"> Kg</span>';
+        document.getElementById('toplamHr').innerHTML =
+          Math.round(data[2]) + '<span style="font-size: 14px;"> Kg</span>';
+        document.getElementById('toplamDiger').innerHTML =
+          Math.round(data[3]) + '<span style="font-size: 14px;"> Kg</span>';
       },
       error: function (error) {
         console.log(error);
@@ -485,15 +496,15 @@ var offCanvasForm = $('#offcanvasAddUser');
         });
 
         //success sweetalert
-        Swal.fire({
-          icon: 'success',
-          title: 'Silindi!',
-          text: 'Kayıt silindi',
-          confirmButtonText: 'Kapat',
-          customClass: {
-            confirmButton: 'btn btn-success'
-          }
-        });
+        // Swal.fire({
+        //   icon: 'success',
+        //   title: 'Silindi!',
+        //   text: 'Kayıt silindi',
+        //   confirmButtonText: 'Kapat',
+        //   customClass: {
+        //     confirmButton: 'btn btn-success'
+        //   }
+        // });
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         Swal.fire({
           title: 'Vazgeçildi',
@@ -505,14 +516,13 @@ var offCanvasForm = $('#offcanvasAddUser');
           }
         });
       }
-
     });
   });
 
   // edit record
   $(document).on('click', '.edit-record', function () {
     var kayit_id = $(this).data('id'),
-    dtrModal = $('.dtr-bs-modal.show');
+      dtrModal = $('.dtr-bs-modal.show');
 
     // hide responsive modal in small screen
     if (dtrModal.length) {
@@ -522,20 +532,130 @@ var offCanvasForm = $('#offcanvasAddUser');
     // changing the title of offcanvas
     $('#offcanvasAddLabel').html('Kayıt Düzeltme');
 
-
     // get data
     $.get(`${baseUrl}stok-list\/${kayit_id}\/edit`, function (data) {
       console.log(data[0].mamul);
-      $('#user_id').val(data[0].id);
-      $('#add-user-fullname').val(data[0].mamul);
-      $('#add-user-email').val(data[0].nevi);
+      $('#record_id').val(data[0].id);
+      $('#mamul').val(data[0].mamul);
+      $('#boy').val(data[0].boy);
+      $('#kantarkg').val(data[0].kantarkg);
+      $('#adet').val(data[0].adet);
+      $('#hat').val(data[0].hat);
+      $('#basildi').val(data[0].basildi);
+      $('#nevi').val(data[0].nevi);
     });
   });
 
+  // changing the title
+  $('.add-new').on('click', function () {
+    // $('#record_id').val(''); //reseting input field
+    // $('#offcanvasAddLabel').html('Kayıt Ekle');
+  });
 
+  // Filter form control to default size
+  // ? setTimeout used for multilingual table initialization
+  setTimeout(() => {
+    $('.dataTables_filter .form-control').removeClass('form-control-sm');
+    $('.dataTables_length .form-select').removeClass('form-select-sm');
+  }, 300);
 
+  // validating form and updating user's data
+  const addNewRecordForm = document.getElementById('addNewRecordForm');
+  // user form validation
+  const fv = FormValidation.formValidation(addNewRecordForm, {
+    fields: {
+      mamul: {
+        validators: {
+          notEmpty: {
+            message: 'Lütfen Mamül Giriniz'
+          }
+        }
+      },
+      boy: {
+        validators: {
+          notEmpty: {
+            message: 'Lütfen Boy Giriniz'
+          }
+        }
+      },
+      adet: {
+        validators: {
+          notEmpty: {
+            message: 'Lütfen Adet Giriniz'
+          }
+        }
+      },
+      kantarkg: {
+        validators: {
+          notEmpty: {
+            message: 'Lütfen Tartım Kilosunu Giriniz'
+          }
+        }
+      },
+      nevi: {
+        validators: {
+          notEmpty: {
+            message: 'Lütfen Nevi Giriniz'
+          }
+        }
+      },
+      hat: {
+        validators: {
+          notEmpty: {
+            message: 'Lütfen Nevi Giriniz'
+          }
+        }
+      }
+    },
+    plugins: {
+      trigger: new FormValidation.plugins.Trigger(),
+      bootstrap5: new FormValidation.plugins.Bootstrap5({
+        // Use this for enabling/changing valid/invalid class
+        eleValidClass: '',
+        rowSelector: function (field, ele) {
+          // field is the field name & ele is the field element
+          return '.mb-6';
+        }
+      }),
+      submitButton: new FormValidation.plugins.SubmitButton(),
+      // Submit the form when all fields are valid
+      // defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
+      autoFocus: new FormValidation.plugins.AutoFocus()
+    }
+  }).on('core.form.valid', function () {
+    $.ajax({
+      data: $('#addNewRecordForm').serialize(),
+      url: `${baseUrl}stok-list`,
+      type: 'POST',
+      success: function (status) {
+        dt_record.draw();
+        offCanvasForm.offcanvas('hide');
+        Swal.fire({
+          icon: 'success',
+          title: `Successfully ${status}!`,
+          text: `User ${status} Successfully.`,
+          customClass: {
+            confirmButton: 'btn btn-success'
+          }
+        });
+        veriAl();
+      },
+      error: function (err) {
+        offCanvasForm.offcanvas('hide');
+        Swal.fire({
+          title: 'Hata var!',
+          text: 'Kaydedilmedi!',
+          icon: 'error',
+          customClass: {
+            confirmButton: 'btn btn-success'
+          }
+        });
+      }
+    });
+  });
 
-
-
-
+  // clearing form data when offcanvas hidden
+  offCanvasForm.on('hidden.bs.offcanvas', function () {
+    fv.resetForm(true);
+  });
 });

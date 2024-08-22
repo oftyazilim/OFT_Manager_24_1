@@ -13,7 +13,7 @@ $configData = Helper::appClasses();
   window.jQuery || document.write(decodeURIComponent('%3Cscript src="js/jquery.min.js"%3E%3C/script%3E'))
 </script>
 <script type="text/javascript" src="https://cdn3.devexpress.com/jslib/23.2.4/js/dx.all.js"></script>
-<link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/23.2.4/css/dx.material.blue.light.compact.css">
+<link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/23.2.4/css/dx.fluent.blue.light.css">
 <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/themify-icons/1.0.1/css/themify-icons.min.css"> -->
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <meta name="csrf-token" content="{{ csrf_token() }}">

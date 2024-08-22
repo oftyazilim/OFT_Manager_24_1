@@ -113,7 +113,7 @@ return [
       'url' => env('ADB_URL'),
       'host' => env('ADB_HOST', '192.168.3.254'),
       'port' => env('ADB_PORT', '1433'),
-      'database' => env('ADB_DATABASE', 'OFT_2024_TEST'),
+      'database' => env('ADB_DATABASE', 'OFT_2024'),
       'username' => env('ADB_USERNAME', 'sa'),
       'password' => env('ADB_PASSWORD', '145353'),
       'charset' => env('ADB_CHARSET', 'utf8'),

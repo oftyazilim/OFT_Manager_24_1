@@ -284,7 +284,7 @@
         'url' => NULL,
         'host' => '192.168.3.254',
         'port' => '1433',
-        'database' => 'OFT_2024_TEST',
+        'database' => 'OFT_2024',
         'username' => 'sa',
         'password' => '145353',
         'charset' => 'utf8',

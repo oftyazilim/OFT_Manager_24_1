@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\stoklar;
 
 use App\Http\Controllers\Controller;
+use App\Models\Kalite2;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Psy\Readline\Hoa\Console;
@@ -78,51 +79,25 @@ class StoklarController extends Controller
 
   public function getKalite2liste()
   {
-    $kalite2 = DB::connection('sqlAkyazi')
-      ->table('mamulstok2')
-      ->select('id', 'mamul', 'boy', 'pkno', 'nevi', 'adet', 'kg', 'hat', 'kantarkg', 'basildi', 'tarih', 'saat', 'operator', 'mamulkodu', 'vardiya', 'kalinlik')
-      ->get();
-
-    $paketCount = $kalite2->count();
-    $toplamKg = number_format($kalite2->sum('kantarkg'), 0, ',', '.');
-    $toplamKgHr = DB::connection('sqlAkyazi')
-      ->table('mamulstok2')
-      ->where('nevi', 'HR')
-      ->sum('kantarkg');
-
-    $toplamKgDiger = DB::connection('sqlAkyazi')
-      ->table('mamulstok2')
-      ->whereNot('nevi', 'HR')
-      ->sum('kantarkg');
-
-    return view('content.stoklar.kalite2liste'
-    , [
-      'toplamPaket' => $paketCount,
-      'toplamKg' => $toplamKg,
-      'toplamKgHr' => number_format($toplamKgHr, 0, ',', '.'),
-      'toplamKgDiger' => number_format($toplamKgDiger, 0, ',', '.'),
-      'kalite2' => $kalite2,
-    ]
-  );
+    $mamullers = DB::connection('sqlAkyazi')
+    ->table('mamuller')
+    ->select('mamul')
+    ->where('tip', 'Boru')
+    ->orWhere('tip', 'Profil')
+    ->distinct()
+    ->get();
+    return view('content.stoklar.kalite2liste', compact('mamullers'));
   }
 
   public function veriAl()
   {
-    $kalite2 = DB::connection('sqlAkyazi')
-      ->table('mamulstok2')
-      ->get();
+    $kalite2 = Kalite2::all();
 
     $paketCount = $kalite2->count();
     $toplamKg = number_format($kalite2->sum('kantarkg'), 0, ',', '.');
-    $toplamKgHr = DB::connection('sqlAkyazi')
-      ->table('mamulstok2')
-      ->where('nevi', 'HR')
-      ->sum('kantarkg');
 
-    $toplamKgDiger = DB::connection('sqlAkyazi')
-      ->table('mamulstok2')
-      ->whereNot('nevi', 'HR')
-      ->sum('kantarkg');
+    $toplamKgHr = Kalite2::where('nevi', 'HR')->sum('kantarkg');
+    $toplamKgDiger = Kalite2::where('nevi', '!=', 'HR')->sum('kantarkg');
 
     return response()->json([
       $paketCount,
@@ -153,11 +128,9 @@ class StoklarController extends Controller
 
     $search = [];
 
-    $toplamKg = DB::connection('sqlAkyazi')
-    ->table('mamulstok2')->sum('kantarkg');
+    $toplamKg = Kalite2::all()->sum('kantarkg');
 
-    $totalData = DB::connection('sqlAkyazi')
-    ->table('mamulstok2')->count();
+    $totalData = Kalite2::all()->count();
 
     $totalFiltered = $totalData;
 
@@ -167,16 +140,14 @@ class StoklarController extends Controller
     $dir = $request->input('order.0.dir');
 
     if (empty($request->input('search.value'))) {
-      $kalite2 =DB::connection('sqlAkyazi')
-      ->table('mamulstok2')->offset($start)
-      ->limit($limit)
+      $kalite2 = Kalite2::offset($start)
+        ->limit($limit)
         ->orderBy($order, $dir)
         ->get();
     } else {
       $search = $request->input('search.value');
 
-      $kalite2 = DB::connection('sqlAkyazi')
-      ->table('mamulstok2')->where('mamul', 'LIKE', "%{$search}%")
+      $kalite2 = Kalite2::where('mamul', 'LIKE', "%{$search}%")
         ->orWhere('nevi', 'LIKE', "%{$search}%")
         ->orWhere('pkno', 'LIKE', "%{$search}%")
         ->orWhere('operator', 'LIKE', "%{$search}%")->offset($start)
@@ -184,15 +155,13 @@ class StoklarController extends Controller
         ->orderBy($order, $dir)
         ->get();
 
-        $toplamKg = DB::connection('sqlAkyazi')
-        ->table('mamulstok2')->where('mamul', 'LIKE', "%{$search}%")
+      $toplamKg = Kalite2::where('mamul', 'LIKE', "%{$search}%")
         ->orWhere('boy', 'LIKE', "%{$search}%")
         ->orWhere('nevi', 'LIKE', "%{$search}%")->sum('kantarkg');
 
-      $totalFiltered = DB::connection('sqlAkyazi')
-      ->table('mamulstok2')->where('mamul', 'LIKE', "%{$search}%")
-      ->orWhere('boy', 'LIKE', "%{$search}%")
-      ->orWhere('nevi', 'LIKE', "%{$search}%")->count();
+      $totalFiltered = Kalite2::where('mamul', 'LIKE', "%{$search}%")
+        ->orWhere('boy', 'LIKE', "%{$search}%")
+        ->orWhere('nevi', 'LIKE', "%{$search}%")->count();
     }
 
     $data = [];
@@ -205,9 +174,9 @@ class StoklarController extends Controller
         $nestedData['mamul'] = $klt->mamul;
         $nestedData['fake_id'] = ++$ids;
         $nestedData['boy'] = $klt->boy;
-        $nestedData['kantarkg'] = number_format($klt->kantarkg, 0, ',','.');
-        $nestedData['adet'] = number_format($klt->adet, 0, ',','.');
-        $nestedData['kg'] = number_format($klt->kg, 2, ',','.');
+        $nestedData['kantarkg'] = number_format($klt->kantarkg, 0, ',', '.');
+        $nestedData['adet'] = number_format($klt->adet, 0, ',', '.');
+        $nestedData['kg'] = number_format($klt->kg, 2, ',', '.');
         $nestedData['nevi'] = $klt->nevi;
         $nestedData['pkno'] = $klt->pkno;
         $nestedData['hat'] = $klt->hat;
@@ -225,7 +194,7 @@ class StoklarController extends Controller
     if ($data) {
       return response()->json([
         'draw' => intval($request->input('draw')),
-        'toplamKg' => number_format($toplamKg, 0, ',','.'),
+        'toplamKg' => number_format($toplamKg, 0, ',', '.'),
         'recordsTotal' => intval($totalData),
         'recordsFiltered' => intval($totalFiltered),
         'code' => 200,
@@ -242,18 +211,85 @@ class StoklarController extends Controller
 
   public function destroy($id)
   {
-    $users = DB::connection('sqlAkyazi')->table('mamulstok2')->where('id', $id)->delete();
+    $users = Kalite2::where('id', $id)->delete();
   }
 
   public function edit($id): JsonResponse
   {
-    $kalite2 = DB::connection('sqlAkyazi')
-    ->table('mamulstok2')->distinct()->where('id', $id)
+    $kalite2 = Kalite2::distinct()->where('id', $id)
       ->get();
     return response()->json($kalite2);
   }
 
+  public function store(Request $request)
+  {
+    $kayitID = $request->id;
 
+    if ($kayitID) {
+      $isBasildi = $request->has('basildi') ? 1 : 0;
+      $mamuller = DB::connection('sqlAkyazi')
+        ->table('mamuller')
+        ->select('mamulkodu', 'minkg', 'kalinlik')
+        ->where('mamul', $request->mamul)
+        ->where('nevi', $request->nevi)
+        ->first();
+      $teorikKg = $request->adet * $mamuller->minkg * ($request->boy / 1000);
+
+      $kayit = Kalite2::updateOrCreate(
+        ['id' => $kayitID],
+        [
+          'mamul' => $request->mamul,
+          'boy' => $request->boy,
+          'nevi' => $request->nevi,
+          'adet' => $request->adet,
+          'kg' => $teorikKg,
+          'hat' => $request->hat,
+          'mamulkodu' => $mamuller->mamulkodu,
+          'kantarkg' => $request->kantarkg,
+          'kalinlik' => $mamuller->kalinlik,
+          'basildi' => $isBasildi,
+          'updated_at' => now(),
+        ]
+      );
+      return response()->json('Updated');
+    } else {
+      $isBasildi = $request->has('basildi') ? 1 : 0;
+      $currentDate = Carbon::now()->format('Y-m-d');
+      $currentTime = Carbon::now()->format('H:i:s');
+      $operatorName = Auth::user()->name;
+      $paketno = $this->paketNoAl($request->hat);
+      $mamuller = DB::connection('sqlAkyazi')
+        ->table('mamuller')
+        ->select('mamulkodu', 'minkg', 'kalinlik')
+        ->where('mamul', $request->mamul)
+        ->where('nevi', $request->nevi)
+        ->first();
+      $teorikKg = $request->adet * $mamuller->minkg * ($request->boy / 1000);
+
+      $kayit = Kalite2::updateOrCreate(
+        ['id' => $kayitID],
+        [
+          'mamul' => $request->mamul,
+          'boy' => $request->boy,
+          'pkno' => $paketno,
+          'tarih' => $currentDate,
+          'saat' => $currentTime,
+          'hat' => $request->hat,
+          'operator' => $operatorName,
+          'nevi' => $request->nevi,
+          'mamulkodu' => $mamuller->mamulkodu,
+          'adet' => $request->adet,
+          'kg' => $teorikKg,
+          'kantarkg' => $request->kantarkg,
+          'kalinlik' => $mamuller->kalinlik,
+          'basildi' => $isBasildi,
+          'created_at' => now(),
+          'updated_at' => now(),
+        ]
+      );
+      return response()->json('Created');
+    }
+  }
 
 
 

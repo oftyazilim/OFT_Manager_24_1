@@ -7,23 +7,13 @@ import Swal from 'sweetalert2';
 
 // Datatable (jquery)
 $(function () {
-
-document.getElementById('baslik').innerHTML = "Kullanıcılar Listesi";
-
+  document.getElementById('baslik').innerHTML = 'Kullanıcılar Listesi';
 
   // Variable declaration for table
   var dt_user_table = $('.datatables-users'),
     // select2 = $('.select2'),
     userView = baseUrl + 'app/user/view/account',
     offCanvasForm = $('#offcanvasAddUser');
-
-  // if (select2.length) {
-  //   var $this = select2;
-  //   $this.wrap('<div class="position-relative"></div>').select2({
-  //     placeholder: 'Select Country',
-  //     dropdownParent: $this.parent()
-  //   });
-  // }
 
   // ajax setup
   $.ajaxSetup({
@@ -151,15 +141,15 @@ document.getElementById('baslik').innerHTML = "Kullanıcılar Listesi";
         }
       ],
       order: [[2, 'desc']],
-      dom:
-        '<"row"' +
+       dom:
+         '<"row"' +
         '<"col-md-2"<"ms-n2"l>>' +
         '<"col-md-10"<"dt-action-buttons text-xl-end text-lg-start text-md-end text-start d-flex align-items-center justify-content-end flex-md-row flex-column mb-6 mb-md-0 mt-n6 mt-md-0"fB>>' +
         '>t' +
         '<"row"' +
         '<"col-sm-12 col-md-6"i>' +
         '<"col-sm-12 col-md-6"p>' +
-        '>',
+         '>',
       lengthMenu: [7, 10, 20, 50, 70, 100], //for length of menu
       language: {
         sLengthMenu: '_MENU_',
@@ -362,7 +352,7 @@ document.getElementById('baslik').innerHTML = "Kullanıcılar Listesi";
       },
       layout: {
         bottomEnd: null
-    }
+      }
     });
   }
 
@@ -380,11 +370,11 @@ document.getElementById('baslik').innerHTML = "Kullanıcılar Listesi";
     // sweetalert for confirmation of delete
     Swal.fire({
       title: 'Emin misiniz?',
-      text: "Bu işlemi geri alamayacaksınız!",
+      text: 'Bu işlemi geri alamayacaksınız!',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Evet, Silebilirsin!',
-      cancelButtonText:'Vazgeç',
+      cancelButtonText: 'Vazgeç',
       customClass: {
         confirmButton: 'btn btn-primary me-3',
         cancelButton: 'btn btn-label-secondary'
@@ -516,7 +506,6 @@ document.getElementById('baslik').innerHTML = "Kullanıcılar Listesi";
       autoFocus: new FormValidation.plugins.AutoFocus()
     }
   }).on('core.form.valid', function () {
-    // adding or updating user when form successfully validate
     $.ajax({
       data: $('#addNewUserForm').serialize(),
       url: `${baseUrl}user-list`,
@@ -524,8 +513,6 @@ document.getElementById('baslik').innerHTML = "Kullanıcılar Listesi";
       success: function (status) {
         dt_user.draw();
         offCanvasForm.offcanvas('hide');
-
-        // sweetalert
         Swal.fire({
           icon: 'success',
           title: `Successfully ${status}!`,
