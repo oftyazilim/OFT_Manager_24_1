@@ -36,10 +36,10 @@
                 <div class="row align-items-center g-md-8">
                     <div class="col-12 col-md-5 d-flex flex-column">
                         <div class="d-flex gap-2 align-items-center mb-3 flex-wrap">
-                            <h2 class="mb-0">$468</h2>
+                            <h2 class="mb-0">35 Ton</h2>
                             <div class="badge rounded bg-label-success">+4.2%</div>
                         </div>
-                        <small class="text-body">You informed of this week compared to last week</small>
+                        <small class="text-body">Değerlendirme önceki haftanın ortalamasına göre yapılmaktadır</small>
                     </div>
                     <div class="col-12 col-md-7 ps-xl-8">
                         <div id="weeklyEarningReports"></div>
