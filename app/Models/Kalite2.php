@@ -17,6 +17,7 @@ class Kalite2 extends Model
     'mamul',
     'boy',
     'kantarkg',
+    'adet2',
     'adet',
     'kg',
     'nevi',

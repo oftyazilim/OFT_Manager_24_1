@@ -32,6 +32,11 @@
           "url": "stoklar/kalite2sliste",
           "name": "2. Kalite (Şekerpınar)",
           "slug": "stoklar-kalite2sliste"
+        },
+        {
+          "url": "stoklar/kalite2s",
+          "name": "2. Kalite (Şekerpınar) DX",
+          "slug": "stoklar-kalite2"
         }
       ]
     },

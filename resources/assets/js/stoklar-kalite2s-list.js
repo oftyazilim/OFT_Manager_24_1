@@ -6,22 +6,25 @@
 //import { error } from 'jquery';
 // import { size } from 'lodash';
 import Swal from 'sweetalert2';
+import ExcelJS from 'exceljs';
 
 // // Datatable (jquery)
 $(function () {
+  // var script = document.createElement('script');
+  // script.src = 'https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.3.0/exceljs.min.js';
+  // script.src = "https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"
+  // document.head.appendChild(script);
+
   document.getElementById('baslik').innerHTML = 'Şekerpınar 2. Kalite Stok Listesi';
 
-
   var dt_table = $('.datatables-kalite2'),
-      offCanvasForm = $('#offcanvasAddRecord');
+    offCanvasForm = $('#offcanvasAddRecord');
 
   $.ajaxSetup({
     headers: {
       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
   });
-
-
 
   //   // Users datatable
   if (dt_table.length) {
@@ -36,6 +39,7 @@ $(function () {
         { data: 'fake_id' },
         { data: 'mamul' },
         { data: 'boy' },
+        { data: 'adet2' },
         { data: 'kantarkg' },
         { data: 'adet' },
         { data: 'kg' },
@@ -52,149 +56,11 @@ $(function () {
       ],
       buttons: [
         {
-          extend: 'collection',
-          className: 'btn btn-label-primary dropdown-toggle mx-4 waves-effect waves-light',
-          text: '<i class="ti ti-upload me-2 ti-xs"></i>Dışa Aktar',
-          buttons: [
-            {
-              extend: 'print',
-              title: '2. Kalite Stoklar (Şekerpınar)',
-              text: '<i class="ti ti-printer me-2" ></i>Print',
-              className: 'dropdown-item',
-              exportOptions: {
-                columns: [1, 2, 3, 4, 6, 7],
-                // prevent avatar to be print
-                format: {
-                  body: function (inner, coldex, rowdex) {
-                    if (inner.length <= 0) return inner;
-                    var el = $.parseHTML(inner);
-                    var result = '';
-                    $.each(el, function (index, item) {
-                      if (item.classList !== undefined && item.classList.contains('mamul')) {
-                        result = result + item.lastChild.firstChild.textContent;
-                      } else if (item.innerText === undefined) {
-                        result = result + item.textContent;
-                      } else result = result + item.innerText;
-                    });
-                    return result;
-                  }
-                }
-              },
-              customize: function (win) {
-                //customize print view for dark
-                $(win.document.body)
-                  .css('color', config.colors.headingColor)
-                  .css('border-color', config.colors.borderColor)
-                  .css('background-color', config.colors.body);
-                $(win.document.body)
-                  .find('table')
-                  .addClass('compact')
-                  .css('color', 'inherit')
-                  .css('border-color', 'inherit')
-                  .css('background-color', 'inherit');
-              }
-            },
-            {
-              extend: 'csv',
-              title: '2. Kalite Stoklar (Şekerpınar)',
-              text: '<i class="ti ti-file-text me-2" ></i>Csv',
-              className: 'dropdown-item',
-              exportOptions: {
-                columns: [1, 2, 3, 4, 6, 7],
-                // prevent avatar to be display
-                format: {
-                  body: function (inner, coldex, rowdex) {
-                    if (inner.length <= 0) return inner;
-                    var el = $.parseHTML(inner);
-                    var result = '';
-                    $.each(el, function (index, item) {
-                      if (item.classList !== undefined && item.classList.contains('mamul')) {
-                        result = result + item.lastChild.firstChild.textContent;
-                      } else if (item.innerText === undefined) {
-                        result = result + item.textContent;
-                      } else result = result + item.innerText;
-                    });
-                    return result;
-                  }
-                }
-              }
-            },
-            {
-              extend: 'excel',
-              title: '2. Kalite Stoklar (Şekerpınar)',
-              text: '<i class="ti ti-file-spreadsheet me-2"></i>Excel',
-              className: 'dropdown-item',
-              exportOptions: {
-                columns: [1, 2, 3, 4, 6, 7],
-                // prevent avatar to be display
-                format: {
-                  body: function (inner, coldex, rowdex) {
-                    if (inner.length <= 0) return inner;
-                    var el = $.parseHTML(inner);
-                    var result = '';
-                    $.each(el, function (index, item) {
-                      if (item.classList !== undefined && item.classList.contains('mamul')) {
-                        result = result + item.lastChild.firstChild.textContent;
-                      } else if (item.innerText === undefined) {
-                        result = result + item.textContent;
-                      } else result = result + item.innerText;
-                    });
-                    return result;
-                  }
-                }
-              }
-            },
-            {
-              extend: 'pdf',
-              title: '2. Kalite Stoklar (Şekerpınar)',
-              text: '<i class="ti ti-file-code-2 me-2"></i>Pdf',
-              className: 'dropdown-item',
-              exportOptions: {
-                columns: [1, 2, 3, 4, 6, 7],
-                // prevent avatar to be display
-                format: {
-                  body: function (inner, coldex, rowdex) {
-                    if (inner.length <= 0) return inner;
-                    var el = $.parseHTML(inner);
-                    var result = '';
-                    $.each(el, function (index, item) {
-                      if (item.classList !== undefined && item.classList.contains('mamul')) {
-                        result = result + item.lastChild.firstChild.textContent;
-                      } else if (item.innerText === undefined) {
-                        result = result + item.textContent;
-                      } else result = result + item.innerText;
-                    });
-                    return result;
-                  }
-                }
-              }
-            },
-            {
-              extend: 'copy',
-              title: '2. Kalite Stoklar (Şekerpınar)',
-              text: '<i class="ti ti-copy me-2" ></i>Copy',
-              className: 'dropdown-item',
-              exportOptions: {
-                columns: [1, 2, 3, 4, 6, 7],
-                // prevent avatar to be display
-                format: {
-                  body: function (inner, coldex, rowdex) {
-                    if (inner.length <= 0) return inner;
-                    var el = $.parseHTML(inner);
-                    var result = '';
-                    $.each(el, function (index, item) {
-                      if (item.classList !== undefined && item.classList.contains('mamul')) {
-                        result = result + item.lastChild.firstChild.textContent;
-                      } else if (item.innerText === undefined) {
-                        result = result + item.textContent;
-                      } else result = result + item.innerText;
-                    });
-                    return result;
-                  }
-                }
-              }
-            }
-          ]
+          text: '<i class="ti ti-arrow-right me-0 me-sm-1 "></i><span class="d-none d-sm-inline-block">Excel</span>',
+          className: 'export btn btn-succes waves-effect waves-light ms-2 me-2',
+          attr: {
+            'data-bs-target': '#exportExcelButton'
+          }
         },
         {
           text: '<i class="ti ti-plus me-0 me-sm-1 ti-xs"></i><span class="d-none d-sm-inline-block">Kayıt Ekle</span>',
@@ -205,7 +71,7 @@ $(function () {
           }
         }
       ],
-      order: [[7, 'desc']],
+      order: [[15, 'desc']],
       dom:
         '<"row"' +
         '<"col-md-2"<"ms-n2"l>>' +
@@ -259,7 +125,12 @@ $(function () {
           className: 'text-end'
         },
         {
-          targets: 3, //kantarkg
+          targets: 3, //adet2
+          className: 'dt-body-center',
+          responsivePriority: 2
+        },
+        {
+          targets: 4, //kantarkg
           responsivePriority: 1,
           className: 'dt-body-right',
           render: function (data, type, full, meta) {
@@ -267,7 +138,7 @@ $(function () {
           }
         },
         {
-          targets: 4, //adet
+          targets: 5, //adet
           responsivePriority: 2,
           className: 'dt-body-right',
           render: function (data, type, row, meta) {
@@ -275,7 +146,7 @@ $(function () {
           }
         },
         {
-          targets: 5, //kg
+          targets: 6, //kg
           responsivePriority: 4,
           className: 'dt-body-right',
           render: function (data, type, row, meta) {
@@ -283,7 +154,7 @@ $(function () {
           }
         },
         {
-          targets: 6, //nevi
+          targets: 7, //nevi
           responsivePriority: 5,
           className: 'dt-body-center',
           render: function (data, type, full, meta) {
@@ -296,7 +167,7 @@ $(function () {
           }
         },
         {
-          targets: 7, //pkno
+          targets: 8, //pkno
           responsivePriority: 4,
           className: 'dt-body-center',
           width: '100%',
@@ -305,7 +176,7 @@ $(function () {
           }
         },
         {
-          targets: 8, //hat
+          targets: 9, //hat
           responsivePriority: 5,
           className: 'dt-body-center',
           render: function (data, type, full, meta) {
@@ -313,7 +184,7 @@ $(function () {
           }
         },
         {
-          targets: 9, //tarih
+          targets: 10, //tarih
           responsivePriority: 4,
           className: 'dt-body-center',
           render: function (data, type, full, meta) {
@@ -321,7 +192,7 @@ $(function () {
           }
         },
         {
-          targets: 10, //saat
+          targets: 11, //saat
           responsivePriority: 5,
           className: 'dt-body-center',
           render: function (data, type, row, meta) {
@@ -329,7 +200,7 @@ $(function () {
           }
         },
         {
-          targets: 11, //operator
+          targets: 12, //operator
           responsivePriority: 5,
           className: 'dt-body-center',
           render: function (data, type, row, meta) {
@@ -337,7 +208,7 @@ $(function () {
           }
         },
         {
-          targets: 12, //mamulkodu
+          targets: 13, //mamulkodu
           responsivePriority: 5,
           className: 'dt-body-center',
           render: function (data, type, full, meta) {
@@ -345,7 +216,7 @@ $(function () {
           }
         },
         {
-          targets: 13, //basildi
+          targets: 14, //basildi
           className: 'dt-body-center',
           responsivePriority: 3,
           render: function (data, type, full, meta) {
@@ -358,9 +229,10 @@ $(function () {
           }
         },
         {
-          targets: 14, //id
+          targets: 15, //id
           className: 'dt-body-center',
-          responsivePriority: 5
+          responsivePriority: 5,
+          visible: false
         },
         {
           // Actions
@@ -369,7 +241,6 @@ $(function () {
           searchable: false,
           responsivePriority: 4,
           orderable: false,
-         // responsivePriority: 3,
           render: function (data, type, full, meta) {
             return (
               '<div class="d-flex align-items-center gap-50">' +
@@ -381,7 +252,8 @@ $(function () {
               //userView +
               '" class="dropdown-item">View</a>' +
               '<a href="javascript:;" class="dropdown-item">Suspend</a>' +
-              '</div>' +              '</div>'
+              '</div>' +
+              '</div>'
             );
           }
         }
@@ -392,7 +264,7 @@ $(function () {
           display: $.fn.dataTable.Responsive.display.modal({
             header: function (row) {
               var data = row.data();
-              return data['musteri'];
+              return data['mamul'];
             }
           }),
           type: 'column',
@@ -446,10 +318,8 @@ $(function () {
         let data = response;
         document.getElementById('toplamPaket').innerHTML = data[0] + '<span style="font-size: 14px;"> Adet</span>';
         document.getElementById('toplamGenel').innerHTML = data[1] + '<span style="font-size: 14px;"> Kg</span>';
-        document.getElementById('toplamHr').innerHTML =
-          Math.round(data[2]) + '<span style="font-size: 14px;"> Kg</span>';
-        document.getElementById('toplamDiger').innerHTML =
-          Math.round(data[3]) + '<span style="font-size: 14px;"> Kg</span>';
+        document.getElementById('toplamHr').innerHTML = data[2] + '<span style="font-size: 14px;"> Kg</span>';
+        document.getElementById('toplamDiger').innerHTML = data[3] + '<span style="font-size: 14px;"> Kg</span>';
       },
       error: function (error) {
         console.log(error);
@@ -539,7 +409,7 @@ $(function () {
       $('#mamul').val(data[0].mamul);
       $('#boy').val(data[0].boy);
       $('#kantarkg').val(data[0].kantarkg);
-      $('#adet').val(data[0].adet);
+      $('#adet2').val(data[0].adet2);
       $('#hat').val(data[0].hat);
       $('#basildi').val(data[0].basildi);
       $('#nevi').val(data[0].nevi);
@@ -658,4 +528,194 @@ $(function () {
   offCanvasForm.on('hidden.bs.offcanvas', function () {
     fv.resetForm(true);
   });
+
+  $('.export').on('click', function () {
+
+    var searchValue = dt_record.search(); // DataTable'dan arama değerini al
+    $.ajax({
+      url: '/export/excel?search=' + encodeURIComponent(searchValue),
+      type: 'GET',
+      dataType: 'json', // Cevabın JSON formatında olduğunu belirtir
+      success: function (response) {
+        // var Excel = require('exceljs');
+        var workbook = new ExcelJS.Workbook();
+        var worksheet = workbook.addWorksheet('Kalite2');
+
+        // Başlık satırını ekleyin
+        worksheet.columns = [
+          { header: 'MAMUL', key: 'mamul', width: 15 },
+          { header: 'BOY', key: 'boy', width: 10 },
+          { header: 'NEVİ', key: 'nevi', width: 10 },
+          { header: 'GRÇ. AD', key: 'adet2', width: 10 },
+          { header: 'GRÇ. KG', key: 'kantarkg', width: 10 },
+          { header: 'SYS. AD', key: 'adet', width: 10 },
+          { header: 'SYS. KG', key: 'kg', width: 10 },
+          { header: 'PAKET NO', key: 'pkno', width: 20 },
+          { header: 'TARİH', key: 'tarih', width: 15 },
+          { header: 'SAAT', key: 'saat', width: 10 },
+          { header: 'OPERATÖR', key: 'operator', width: 15 },
+          { header: 'MAMUL KODU', key: 'mamulkodu', width: 15 },
+          { header: 'BASILDI', key: 'basildi', width: 10 }
+        ];
+        worksheet.getColumn('C').alignment = {horizontal: 'center'} ;
+        worksheet.getColumn('H').alignment = {horizontal: 'center'} ;
+        worksheet.getColumn('I').alignment = {horizontal: 'center'} ;
+        worksheet.getColumn('L').alignment = {horizontal: 'center'} ;
+        worksheet.getColumn('M').alignment = {horizontal: 'center'} ;
+        worksheet.getColumn('K').alignment = {horizontal: 'center'} ;
+
+        // Excel dosyasına verileri ekleyin
+        response.forEach(function (veri) {
+          // var tarih = Math.floor(new Date(veri.tarih).getTime() / 1000);
+          // Diyelim ki tarih zaman damgasını hesapladık:
+          var unixTimestamp = Math.floor(new Date(veri.tarih).getTime() / 1000);
+
+          // Excel tarih formatına dönüştürme
+          var excelDate = 25569 + ((unixTimestamp + 10800) / 86400);
+
+          // Geri dönüşüm işlemi - Unix zaman damgasına çevirme
+          var convertedUnixTimestamp = (excelDate - 25569) * 86400 - 10800;
+
+          // Unix zaman damgasını Date objesine çevirme
+          var tarih = new Date(convertedUnixTimestamp * 1000);
+
+          // Tarihi YYYY-MM-DD formatında gösterme
+          // var tarih = tarihObjesi.toISOString().split('T')[0];
+          worksheet.addRow({
+            mamul: veri.mamul,
+            boy: veri.boy,
+            nevi: veri.nevi,
+            adet2: parseInt(veri.adet2),
+            kantarkg: parseFloat(veri.kantarkg),
+            adet: parseInt(veri.adet),
+            kg: parseFloat(veri.kg),
+            pkno: veri.pkno,
+            tarih: tarih,
+            saat: veri.saat,
+            operator: veri.operator,
+            mamulkodu: veri.mamulkodu,
+            basildi: veri.basildi
+          });
+        });
+
+        worksheet.autoFilter = {
+          from: 'A1',
+          to: 'N1',
+         }
+
+        // Excel dosyasını Blob olarak yazın
+        workbook.xlsx
+        .writeBuffer()
+        .then(function (data) {
+          var blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+            var link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'kalite2.xlsx';
+            link.click();
+          })
+          .catch(function (error) {
+            console.error('Error writing Excel file:', error);
+          });
+      },
+      error: function (xhr, status, error) {
+        console.error('Excel export failed:', error);
+      }
+    });
+
+
+
+
+
+
+
+    // var searchValue = dt_record.search();
+    // // alert(encodeURIComponent(searchValue));
+    // var url = '/export/excel?search=' + searchValue;
+    // // Excel'i dışa aktaran rotaya AJAX isteği gönderiyoruz
+    // $.ajax({
+    //   url: url, // Laravel rota URL'si
+    //   type: 'GET',
+    //   xhrFields: {
+    //     responseType: 'blob' // Blob olarak cevabı almak için
+    //   },
+    //   success: function (response) {
+    //     var blob = new Blob([response], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+    //     var link = document.createElement('a');
+    //     link.href = window.URL.createObjectURL(blob);
+    //     link.download = 'kalite2.xlsx'; // İndirme dosyasının adı
+    //     link.click();
+    //   },
+    //   error: function (xhr, status, error) {
+    //     console.error('Excel export failed:', error);
+    //   }
+    // });
+  });
+
+  // document.getElementById('exportExcelButton1').addEventListener('click', function () {
+  //   var searchValue = dt_record.search(); // DataTable'dan arama değerini al
+  //   $.ajax({
+  //     url: '/export/excel1?search=' + encodeURIComponent(searchValue),
+  //     type: 'GET',
+  //     dataType: 'json', // Cevabın JSON formatında olduğunu belirtir
+  //     success: function (response) {
+  //       var workbook = new ExcelJS.Workbook();
+  //       var worksheet = workbook.addWorksheet('Kalite2');
+
+  //       // Başlık satırını ekleyin
+  //       worksheet.columns = [
+  //         { header: 'MAMÜL', key: 'mamul', width: 10 },
+  //         { header: 'BOY', key: 'boy', width: 10 },
+  //         { header: 'NEVİ', key: 'nevi', width: 10 },
+  //         { header: 'GRÇ. AD', key: 'adet2', width: 10 },
+  //         { header: 'GRÇ. KG', key: 'kantarkg', width: 15 },
+  //         { header: 'SYS. AD', key: 'adet', width: 10 },
+  //         { header: 'SYS. KG', key: 'kg', width: 10 },
+  //         { header: 'PAKET NO', key: 'pkno', width: 10 },
+  //         { header: 'TARİH', key: 'tarih', width: 15 },
+  //         { header: 'SAAT', key: 'saat', width: 10 },
+  //         { header: 'OPERATÖR', key: 'operator', width: 15 },
+  //         { header: 'MAMÜL KODU', key: 'mamulkodu', width: 15 },
+  //         { header: 'BASILDI', key: 'basildi', width: 10 },
+  //         { header: 'ID', key: 'id', width: 10 }
+  //       ];
+
+  //       // Excel dosyasına verileri ekleyin
+  //       response.forEach(function (veri) {
+  //         worksheet.addRow({
+  //           mamul: veri.mamul,
+  //           boy: veri.boy,
+  //           nevi: veri.nevi,
+  //           adet2: parseInt(veri.adet2),
+  //           kantarkg: parseFloat(veri.kantarkg),
+  //           adet: parseInt(veri.adet),
+  //           kg: parseFloat(veri.kg),
+  //           pkno: veri.pkno,
+  //           tarih: veri.tarih, // Bu alanı tarih olarak formatlamak gerekebilir
+  //           saat: veri.saat,
+  //           operator: veri.operator,
+  //           mamulkodu: veri.mamulkodu,
+  //           basildi: veri.basildi,
+  //           id: veri.id
+  //         });
+  //       });
+
+  //       // Excel dosyasını Blob olarak yazın
+  //       workbook.xlsx
+  //         .writeBuffer()
+  //         .then(function (data) {
+  //           var blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+  //           var link = document.createElement('a');
+  //           link.href = URL.createObjectURL(blob);
+  //           link.download = 'kalite2.xlsx';
+  //           link.click();
+  //         })
+  //         .catch(function (error) {
+  //           console.error('Error writing Excel file:', error);
+  //         });
+  //     },
+  //     error: function (xhr, status, error) {
+  //       console.error('Excel export failed:', error);
+  //     }
+  //   });
+  // });
 });

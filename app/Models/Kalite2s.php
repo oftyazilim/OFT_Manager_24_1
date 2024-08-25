@@ -16,6 +16,7 @@ class Kalite2s extends Model
   protected $fillable = [
     'mamul',
     'boy',
+    'adet2',
     'kantarkg',
     'adet',
     'kg',
