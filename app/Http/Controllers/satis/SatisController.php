@@ -109,6 +109,7 @@ class SatisController extends Controller
         $nestedData['odemeplankodu'] = number_format($siparis->odemeplankodu, 0, ',','.');
         $nestedData['tarih'] = $siparis->tarih;
         $nestedData['birim'] = $siparis->birim;
+        $nestedData['durum'] = number_format(($siparis->sprkg - $siparis->klnkg) / $siparis->sprkg * 100, 0, ',','.');
 
         $data[] = $nestedData;
       }

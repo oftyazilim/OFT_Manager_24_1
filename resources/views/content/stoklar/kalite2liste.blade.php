@@ -101,7 +101,7 @@
                             <th>MAMUL KODU</th>
                             <th>BASILDI</th>
                             <th>ID</th>
-                            <th>EYLEM</th>
+                            <th style="text-align: center;">EYLEM</th>
                         </tr>
                     </thead>
                     <tfoot>

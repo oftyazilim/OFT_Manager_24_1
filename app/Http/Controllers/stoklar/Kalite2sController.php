@@ -65,7 +65,7 @@ class Kalite2sController extends Controller
       ->distinct()
       ->get();
 
-    return view('content.stoklar.Kalite2liste', compact('mamullers', 'kalite2', 'hatlar', 'nevi'));
+    return view('content.stoklar.Kalite2sliste', compact('mamullers', 'kalite2', 'hatlar', 'nevi'));
   }
 
   public function veriAl()

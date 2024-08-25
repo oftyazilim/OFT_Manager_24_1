@@ -81,7 +81,7 @@ $(function () {
         '<"col-sm-12 col-md-6"i>' +
         '<"col-sm-12 col-md-6"p>' +
         '>',
-      lengthMenu: [7, 10, 15, 20, 50, 70, 100], //for length of menu
+      lengthMenu: [10, 15, 20, 50, 70, 100], //for length of menu
       language: {
         sLengthMenu: '_MENU_',
         search: '',
@@ -203,9 +203,9 @@ $(function () {
           targets: 12, //operator
           responsivePriority: 5,
           className: 'dt-body-center',
-          render: function (data, type, row, meta) {
-            return data;
-          }
+          render: function (data, type, row) {
+            return '<span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">' + data + '</span>';
+        }
         },
         {
           targets: 13, //mamulkodu
@@ -223,8 +223,8 @@ $(function () {
             var $verified = full['basildi'];
             return `${
               $verified == 1
-                ? '<i class="ti fs-4 ti-shield-check text-success"></i>'
-                : '<i class="ti fs-4 ti-shield-x text-danger" ></i>'
+                ? '<i class="ti fs-4 ti-shield-check text-success" style="font-size: 13px; line-height: 0.7; vertical-align: middle;"></i>'
+                : '<i class="ti fs-4 ti-shield-x text-danger" style="font-size: 13px; line-height: 0.7; vertical-align: middle;"></i>'
             }`;
           }
         },
@@ -237,15 +237,14 @@ $(function () {
         {
           // Actions
           targets: -1,
-          title: 'Eylemler',
           searchable: false,
           responsivePriority: 4,
           orderable: false,
           render: function (data, type, full, meta) {
             return (
-              '<div class="d-flex align-items-center gap-50">' +
-              `<button class="btn btn-sm btn-icon edit-record btn-text-secondary rounded-pill waves-effect" data-id="${full['id']}" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAddRecord"><i class="ti ti-edit"></i></button>` +
-              `<button class="btn btn-sm btn-icon delete-record btn-text-secondary rounded-pill waves-effect" data-id="${full['id']}"><i class="ti ti-trash"></i></button>` +
+              '<div class="d-flex align-items-center">' +
+              `<i class="ti ti-edit edit-record" data-id="${full['id']}" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAddRecord" style="font-size: 20px; line-height:0.7; vertical-align: middle;"></i>` +
+              `<i class="ti ti-trash delete-record" data-id="${full['id']}" style="font-size: 20px; line-height: 0.7; vertical-align: middle;"></i>` +
               '</div>'
             );
           }

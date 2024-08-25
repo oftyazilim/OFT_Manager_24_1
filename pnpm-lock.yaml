@@ -83,6 +83,9 @@ importers:
       aos:
         specifier: 2.3.4
         version: 2.3.4
+      apexcharts:
+        specifier: ^3.52.0
+        version: 3.52.0
       apexcharts-clevision:
         specifier: 3.28.5
         version: 3.28.5
@@ -1654,6 +1657,9 @@ packages:
     peerDependencies:
       prop-types: 15.8.1
 
+  '@yr/monotone-cubic-spline@1.0.3':
+    resolution: {integrity: sha512-FQXkOta0XBSUPHndIKON2Y9JeQz5ZeMqLYZVVK93FliNBFm7LNMIZmY6FrMEB9XPcDbE2bekMbZD6kzDkxwYjA==}
+
   accepts@1.3.8:
     resolution: {integrity: sha512-PYAthTa2m2VKxuvSD3DPC/Gy+U+sOA1LAuT8mkmRuvw+NACSaeXEQ+NHcVF7rONl6qcaxV3Uuemwawk+7+SJLw==}
     engines: {node: '>= 0.6'}
@@ -1733,6 +1739,9 @@ packages:
 
   apexcharts-clevision@3.28.5:
     resolution: {integrity: sha512-FaxvmpCGxUyusUGzS1iAt3yL00UG5Bus73fhEhnK1QuH+expzz53f4lJFxwP1kY31vpR9WTzZx52CZzDEk4UOg==}
+
+  apexcharts@3.52.0:
+    resolution: {integrity: sha512-7dg0ADKs8AA89iYMZMe2sFDG0XK5PfqllKV9N+i3hKHm3vEtdhwz8AlXGm+/b0nJ6jKiaXsqci5LfVxNhtB+dA==}
 
   archiver-utils@2.1.0:
     resolution: {integrity: sha512-bEL/yUb/fNNiNTuUz979Z0Yg5L+LzLxGJz8x79lYmR54fmTIb6ob/hNQgkQnIUDWIFjZVQwl9Xs356I6BAMHfw==}
@@ -5847,6 +5856,8 @@ snapshots:
     dependencies:
       prop-types: 15.8.1
 
+  '@yr/monotone-cubic-spline@1.0.3': {}
+
   accepts@1.3.8:
     dependencies:
       mime-types: 2.1.35
@@ -5923,6 +5934,16 @@ snapshots:
 
   apexcharts-clevision@3.28.5:
     dependencies:
+      svg.draggable.js: 2.2.2
+      svg.easing.js: 2.0.0
+      svg.filter.js: 2.0.2
+      svg.pathmorphing.js: 0.1.3
+      svg.resize.js: 1.4.3
+      svg.select.js: 3.0.1
+
+  apexcharts@3.52.0:
+    dependencies:
+      '@yr/monotone-cubic-spline': 1.0.3
       svg.draggable.js: 2.2.2
       svg.easing.js: 2.0.0
       svg.filter.js: 2.0.2

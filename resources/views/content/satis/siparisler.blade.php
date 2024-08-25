@@ -81,11 +81,8 @@
 
     <div class="card mt-2">
         <div class="card">
-            {{-- <div class="card-header border-bottom">
-                <h5 class="card-title mb-0">Satış Siparişleri</h5>
-            </div> --}}
             <div class="card-datatable table-responsive-sm  text-nowrap">
-              <table style="font-size: 14px" class="datatables-satis table">
+              <table style="font-size: 14px" class="datatables-satis table-sm">
                 <thead class="border-top">
                   <tr>
                     <th>GÖSTER</th>
@@ -94,6 +91,7 @@
                     <th>AÇIKLAMA</th>
                     <th>SİPARİŞ KG</th>
                     <th>KALAN KG</th>
+                    <th>DURUM</th>
                     <th>ÖDEME PLANI</th>
                     <th>TARİH</th>
                     <th>BİRİM</th>
