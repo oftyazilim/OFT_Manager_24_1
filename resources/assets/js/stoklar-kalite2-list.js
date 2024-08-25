@@ -335,6 +335,7 @@ $(function () {
     }).then(function (result) {
       if (result.value) {
         // delete the data
+        alert(temp_id);
         $.ajax({
           type: 'DELETE',
           url: `${baseUrl}stok-list/${temp_id}`,

@@ -16,9 +16,10 @@ class Kalite2sController extends Controller
   {
     $search = $request->input('search');
     if (empty($search)) {
-      $kalite2Veriler = Kalite2s::all();
+      $kalite2Veriler = Kalite2s::where('silindi', false)->get();
     } else {
-      $kalite2Veriler = Kalite2s::where('mamul', 'LIKE', "%{$search}%")
+      $kalite2Veriler = Kalite2s::where('silindi', false)->
+      where('mamul', 'LIKE', "%{$search}%")
         ->orWhere('nevi', 'LIKE', "%{$search}%")
         ->orWhere('pkno', 'LIKE', "%{$search}%")
         ->orWhere('operator', 'LIKE', "%{$search}%")
@@ -31,7 +32,7 @@ class Kalite2sController extends Controller
 
   public function kompleAl()
   {
-    $kalite2 = Kalite2s::all();
+    $kalite2 = Kalite2s::where('silindi', false)->get();
 
     return response()->json([
       $kalite2,
@@ -40,7 +41,7 @@ class Kalite2sController extends Controller
 
   public function getKalite2liste()
   {
-    $kalite2 = Kalite2s::all();
+    $kalite2 = Kalite2s::where('silindi', false)->get();
 
     $mamullers = DB::connection('sqlSekerpinar')
       ->table('mamuller')
@@ -64,18 +65,18 @@ class Kalite2sController extends Controller
       ->distinct()
       ->get();
 
-    return view('content.stoklar.kalite2sliste', compact('mamullers', 'kalite2', 'hatlar', 'nevi'));
+    return view('content.stoklar.Kalite2liste', compact('mamullers', 'kalite2', 'hatlar', 'nevi'));
   }
 
   public function veriAl()
   {
-    $kalite2 = Kalite2s::all();
+    $kalite2 = Kalite2s::where('silindi', false)->get();
 
     $paketCount = $kalite2->count();
     $toplamKg = number_format($kalite2->sum('kantarkg'), 0, ',', '.');
 
-    $toplamKgHr = number_format($kalite2->where('nevi', '==', 'HR')->sum('kantarkg'), 0, ',', '.');
-    $toplamKgDiger = number_format($kalite2->where('nevi', '!=', 'HR')->sum('kantarkg'), 0, ',', '.');
+    $toplamKgHr = number_format($kalite2->where('silindi', false)->where('nevi', '==', 'HR')->sum('kantarkg'), 0, ',', '.');
+    $toplamKgDiger = number_format($kalite2->where('silindi', false)->where('nevi', '!=', 'HR')->sum('kantarkg'), 0, ',', '.');
 
     return response()->json([
       $paketCount,
@@ -107,9 +108,9 @@ class Kalite2sController extends Controller
 
     $search = [];
 
-    $toplamKg = Kalite2s::all()->sum('kantarkg');
+    $toplamKg = Kalite2s::where('silindi', false)->get()->sum('kantarkg');
 
-    $totalData = Kalite2s::all()->count();
+    $totalData = Kalite2s::where('silindi', false)->get()->count();
 
     $totalFiltered = $totalData;
 
@@ -119,14 +120,16 @@ class Kalite2sController extends Controller
     $dir = $request->input('order.0.dir');
 
     if (empty($request->input('search.value'))) {
-      $kalite2 = Kalite2s::offset($start)
+      $kalite2 = Kalite2s::where('silindi', false)
+        ->offset($start)
         ->limit($limit)
         ->orderBy($order, $dir)
         ->get();
     } else {
       $search = $request->input('search.value');
 
-      $kalite2 = Kalite2s::where('mamul', 'LIKE', "%{$search}%")
+      $kalite2 = Kalite2s::where('silindi', false)
+        ->where('mamul', 'LIKE', "%{$search}%")
         ->orWhere('nevi', 'LIKE', "%{$search}%")
         ->orWhere('pkno', 'LIKE', "%{$search}%")
         ->orWhere('operator', 'LIKE', "%{$search}%")->offset($start)
@@ -134,11 +137,13 @@ class Kalite2sController extends Controller
         ->orderBy($order, $dir)
         ->get();
 
-      $toplamKg = Kalite2s::where('mamul', 'LIKE', "%{$search}%")
+      $toplamKg = Kalite2s::where('silindi', false)
+        ->where('mamul', 'LIKE', "%{$search}%")
         ->orWhere('boy', 'LIKE', "%{$search}%")
         ->orWhere('nevi', 'LIKE', "%{$search}%")->sum('kantarkg');
 
-      $totalFiltered = Kalite2s::where('mamul', 'LIKE', "%{$search}%")
+      $totalFiltered = Kalite2s::where('silindi', false)
+        ->where('mamul', 'LIKE', "%{$search}%")
         ->orWhere('boy', 'LIKE', "%{$search}%")
         ->orWhere('nevi', 'LIKE', "%{$search}%")->count();
     }
@@ -191,7 +196,21 @@ class Kalite2sController extends Controller
 
   public function destroy($id)
   {
-    $users = Kalite2s::where('id', $id)->delete();
+    // Mevcut kaydı bul
+    $kayit = Kalite2s::find($id);
+
+    // Kayıt bulunduysa güncelle
+    if ($kayit) {
+        $kayit->silen = Auth::user()->name;
+        $kayit->silindi = 1;
+        $kayit->silindi_at = now();
+        $kayit->save(); // Güncellenmiş veriyi kaydet
+
+        return response()->json('Silindi');
+    }
+
+    // Kayıt bulunamadıysa hata mesajı döndür
+    return response()->json('Kayıt bulunamadı', 404);
   }
 
   public function edit($id): JsonResponse
