@@ -6,65 +6,23 @@ use App\Http\Controllers\Controller;
 use App\Models\Kalite2;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Psy\Readline\Hoa\Console;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\JsonResponse;
 
-class Kalite2Controller extends Controller
+class Kalite2Controller1 extends Controller
 {
-  public function exportExcel(Request $request)
-  {
-    $search = $request->input('search');
-    if (empty($search)) {
-      $kalite2Veriler = Kalite2::all();
-    } else {
-      $kalite2Veriler = Kalite2::where('mamul', 'LIKE', "%{$search}%")
-        ->orWhere('nevi', 'LIKE', "%{$search}%")
-        ->orWhere('pkno', 'LIKE', "%{$search}%")
-        ->orWhere('operator', 'LIKE', "%{$search}%")
-        ->get();
-    }
-
-    // JSON formatında döndürün
-    return response()->json($kalite2Veriler);
-  }
-
-  public function kompleAl()
-  {
-    $kalite2 = Kalite2::all();
-
-    return response()->json([
-      $kalite2,
-    ]);
-  }
-
   public function getKalite2liste()
   {
-    $kalite2 = Kalite2::all();
-
     $mamullers = DB::connection('sqlAkyazi')
-      ->table('mamuller')
-      ->select('mamul')
-      ->where('tip', 'Boru')
-      ->orWhere('tip', 'Profil')
-      ->distinct()
-      ->get();
-
-    $nevi = DB::connection('sqlAkyazi')
-      ->table('mamuller')
-      ->select('nevi')
-      ->where('tip', 'Boru')
-      ->orWhere('tip', 'Profil')
-      ->distinct()
-      ->get();
-
-    $hatlar = DB::connection('sqlAkyazi')
-      ->table('caldurum')
-      ->select('hat')
-      ->distinct()
-      ->get();
-
-    return view('content.stoklar.Kalite2liste', compact('mamullers', 'kalite2', 'hatlar', 'nevi'));
+    ->table('mamuller')
+    ->select('mamul')
+    ->where('tip', 'Boru')
+    ->orWhere('tip', 'Profil')
+    ->distinct()
+    ->get();
+    return view('content.stoklar.kalite2liste', compact('mamullers'));
   }
 
   public function veriAl()
@@ -74,8 +32,8 @@ class Kalite2Controller extends Controller
     $paketCount = $kalite2->count();
     $toplamKg = number_format($kalite2->sum('kantarkg'), 0, ',', '.');
 
-    $toplamKgHr = number_format($kalite2->where('nevi', '==', 'HR')->sum('kantarkg'), 0, ',', '.');
-    $toplamKgDiger = number_format($kalite2->where('nevi', '!=', 'HR')->sum('kantarkg'), 0, ',', '.');
+    $toplamKgHr = Kalite2::where('nevi', 'HR')->sum('kantarkg');
+    $toplamKgDiger = Kalite2::where('nevi', '!=', 'HR')->sum('kantarkg');
 
     return response()->json([
       $paketCount,
@@ -90,19 +48,18 @@ class Kalite2Controller extends Controller
     $columns = [
       1 => 'mamul',
       2 => 'boy',
-      3 => 'adet2',
-      4 => 'kantarkg',
-      5 => 'adet',
-      6 => 'kg',
-      7 => 'nevi',
-      8 => 'pkno',
-      9 => 'hat',
-      10 => 'tarih',
-      11 => 'saat',
-      12 => 'operator',
-      13 => 'mamulkodu',
-      14 => 'basildi',
-      15 => 'id',
+      3 => 'kantarkg',
+      4 => 'adet',
+      5 => 'kg',
+      6 => 'nevi',
+      7 => 'pkno',
+      8 => 'hat',
+      9 => 'tarih',
+      10 => 'saat',
+      11 => 'operator',
+      12 => 'mamulkodu',
+      13 => 'basildi',
+      14 => 'id',
     ];
 
     $search = [];
@@ -152,7 +109,6 @@ class Kalite2Controller extends Controller
       foreach ($kalite2 as $klt) {
         $nestedData['mamul'] = $klt->mamul;
         $nestedData['fake_id'] = ++$ids;
-        $nestedData['adet2'] = number_format($klt->adet2, 0, ',', '.');
         $nestedData['boy'] = $klt->boy;
         $nestedData['kantarkg'] = number_format($klt->kantarkg, 0, ',', '.');
         $nestedData['adet'] = number_format($klt->adet, 0, ',', '.');
@@ -213,7 +169,7 @@ class Kalite2Controller extends Controller
         ->where('mamul', $request->mamul)
         ->where('nevi', $request->nevi)
         ->first();
-      $teorikKg = $request->adet2 * $mamuller->minkg * ($request->boy / 1000);
+      $teorikKg = $request->adet * $mamuller->minkg * ($request->boy / 1000);
 
       $kayit = Kalite2::updateOrCreate(
         ['id' => $kayitID],
@@ -221,7 +177,7 @@ class Kalite2Controller extends Controller
           'mamul' => $request->mamul,
           'boy' => $request->boy,
           'nevi' => $request->nevi,
-          'adet2' => $request->adet2,
+          'adet' => $request->adet,
           'kg' => $teorikKg,
           'hat' => $request->hat,
           'mamulkodu' => $mamuller->mamulkodu,
@@ -244,7 +200,7 @@ class Kalite2Controller extends Controller
         ->where('mamul', $request->mamul)
         ->where('nevi', $request->nevi)
         ->first();
-      $teorikKg = $request->adet2 * $mamuller->minkg * ($request->boy / 1000);
+      $teorikKg = $request->adet * $mamuller->minkg * ($request->boy / 1000);
 
       $kayit = Kalite2::updateOrCreate(
         ['id' => $kayitID],
@@ -258,8 +214,7 @@ class Kalite2Controller extends Controller
           'operator' => $operatorName,
           'nevi' => $request->nevi,
           'mamulkodu' => $mamuller->mamulkodu,
-          'adet' => $request->adet2,
-          'adet2' => $request->adet2,
+          'adet' => $request->adet,
           'kg' => $teorikKg,
           'kantarkg' => $request->kantarkg,
           'kalinlik' => $mamuller->kalinlik,
@@ -372,4 +327,5 @@ class Kalite2Controller extends Controller
 
     return $paketno;
   }
+
 }

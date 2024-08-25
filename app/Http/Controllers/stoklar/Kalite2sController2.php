@@ -3,22 +3,22 @@
 namespace App\Http\Controllers\stoklar;
 
 use App\Http\Controllers\Controller;
-use App\Models\Kalite2;
+use App\Models\Kalite2s;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\JsonResponse;
 
-class Kalite2Controller extends Controller
+class Kalite2sController2 extends Controller
 {
   public function exportExcel(Request $request)
   {
     $search = $request->input('search');
     if (empty($search)) {
-      $kalite2Veriler = Kalite2::all();
+      $kalite2Veriler = Kalite2s::all();
     } else {
-      $kalite2Veriler = Kalite2::where('mamul', 'LIKE', "%{$search}%")
+      $kalite2Veriler = Kalite2s::where('mamul', 'LIKE', "%{$search}%")
         ->orWhere('nevi', 'LIKE', "%{$search}%")
         ->orWhere('pkno', 'LIKE', "%{$search}%")
         ->orWhere('operator', 'LIKE', "%{$search}%")
@@ -31,7 +31,7 @@ class Kalite2Controller extends Controller
 
   public function kompleAl()
   {
-    $kalite2 = Kalite2::all();
+    $kalite2 = Kalite2s::all();
 
     return response()->json([
       $kalite2,
@@ -40,9 +40,9 @@ class Kalite2Controller extends Controller
 
   public function getKalite2liste()
   {
-    $kalite2 = Kalite2::all();
+    $kalite2 = Kalite2s::all();
 
-    $mamullers = DB::connection('sqlAkyazi')
+    $mamullers = DB::connection('sqlSekerpinar')
       ->table('mamuller')
       ->select('mamul')
       ->where('tip', 'Boru')
@@ -50,7 +50,7 @@ class Kalite2Controller extends Controller
       ->distinct()
       ->get();
 
-    $nevi = DB::connection('sqlAkyazi')
+    $nevi = DB::connection('sqlSekerpinar')
       ->table('mamuller')
       ->select('nevi')
       ->where('tip', 'Boru')
@@ -58,18 +58,18 @@ class Kalite2Controller extends Controller
       ->distinct()
       ->get();
 
-    $hatlar = DB::connection('sqlAkyazi')
+    $hatlar = DB::connection('sqlSekerpinar')
       ->table('caldurum')
       ->select('hat')
       ->distinct()
       ->get();
 
-    return view('content.stoklar.Kalite2liste', compact('mamullers', 'kalite2', 'hatlar', 'nevi'));
+    return view('content.stoklar.kalite2sliste', compact('mamullers', 'kalite2', 'hatlar', 'nevi'));
   }
 
   public function veriAl()
   {
-    $kalite2 = Kalite2::all();
+    $kalite2 = Kalite2s::all();
 
     $paketCount = $kalite2->count();
     $toplamKg = number_format($kalite2->sum('kantarkg'), 0, ',', '.');
@@ -107,9 +107,9 @@ class Kalite2Controller extends Controller
 
     $search = [];
 
-    $toplamKg = Kalite2::all()->sum('kantarkg');
+    $toplamKg = Kalite2s::all()->sum('kantarkg');
 
-    $totalData = Kalite2::all()->count();
+    $totalData = Kalite2s::all()->count();
 
     $totalFiltered = $totalData;
 
@@ -119,14 +119,14 @@ class Kalite2Controller extends Controller
     $dir = $request->input('order.0.dir');
 
     if (empty($request->input('search.value'))) {
-      $kalite2 = Kalite2::offset($start)
+      $kalite2 = Kalite2s::offset($start)
         ->limit($limit)
         ->orderBy($order, $dir)
         ->get();
     } else {
       $search = $request->input('search.value');
 
-      $kalite2 = Kalite2::where('mamul', 'LIKE', "%{$search}%")
+      $kalite2 = Kalite2s::where('mamul', 'LIKE', "%{$search}%")
         ->orWhere('nevi', 'LIKE', "%{$search}%")
         ->orWhere('pkno', 'LIKE', "%{$search}%")
         ->orWhere('operator', 'LIKE', "%{$search}%")->offset($start)
@@ -134,11 +134,11 @@ class Kalite2Controller extends Controller
         ->orderBy($order, $dir)
         ->get();
 
-      $toplamKg = Kalite2::where('mamul', 'LIKE', "%{$search}%")
+      $toplamKg = Kalite2s::where('mamul', 'LIKE', "%{$search}%")
         ->orWhere('boy', 'LIKE', "%{$search}%")
         ->orWhere('nevi', 'LIKE', "%{$search}%")->sum('kantarkg');
 
-      $totalFiltered = Kalite2::where('mamul', 'LIKE', "%{$search}%")
+      $totalFiltered = Kalite2s::where('mamul', 'LIKE', "%{$search}%")
         ->orWhere('boy', 'LIKE', "%{$search}%")
         ->orWhere('nevi', 'LIKE', "%{$search}%")->count();
     }
@@ -191,12 +191,12 @@ class Kalite2Controller extends Controller
 
   public function destroy($id)
   {
-    $users = Kalite2::where('id', $id)->delete();
+    $users = Kalite2s::where('id', $id)->delete();
   }
 
   public function edit($id): JsonResponse
   {
-    $kalite2 = Kalite2::distinct()->where('id', $id)
+    $kalite2 = Kalite2s::distinct()->where('id', $id)
       ->get();
     return response()->json($kalite2);
   }
@@ -207,7 +207,7 @@ class Kalite2Controller extends Controller
 
     if ($kayitID) {
       $isBasildi = $request->has('basildi') ? 1 : 0;
-      $mamuller = DB::connection('sqlAkyazi')
+      $mamuller = DB::connection('sqlSekerpinar')
         ->table('mamuller')
         ->select('mamulkodu', 'minkg', 'kalinlik')
         ->where('mamul', $request->mamul)
@@ -215,7 +215,7 @@ class Kalite2Controller extends Controller
         ->first();
       $teorikKg = $request->adet2 * $mamuller->minkg * ($request->boy / 1000);
 
-      $kayit = Kalite2::updateOrCreate(
+      $kayit = Kalite2s::updateOrCreate(
         ['id' => $kayitID],
         [
           'mamul' => $request->mamul,
@@ -238,7 +238,7 @@ class Kalite2Controller extends Controller
       $currentTime = Carbon::now()->format('H:i:s');
       $operatorName = Auth::user()->name;
       $paketno = $this->paketNoAl($request->hat);
-      $mamuller = DB::connection('sqlAkyazi')
+      $mamuller = DB::connection('sqlSekerpinar')
         ->table('mamuller')
         ->select('mamulkodu', 'minkg', 'kalinlik')
         ->where('mamul', $request->mamul)
@@ -246,7 +246,7 @@ class Kalite2Controller extends Controller
         ->first();
       $teorikKg = $request->adet2 * $mamuller->minkg * ($request->boy / 1000);
 
-      $kayit = Kalite2::updateOrCreate(
+      $kayit = Kalite2s::updateOrCreate(
         ['id' => $kayitID],
         [
           'mamul' => $request->mamul,
@@ -312,11 +312,11 @@ class Kalite2Controller extends Controller
 
 
     // Veriyi güncelle ve sonra çek
-    DB::connection('sqlAkyazi')->table('paketno')
+    DB::connection('sqlSekerpinar')->table('paketno')
       ->where('hat', $hat)
       ->increment('paketno', 1);
 
-    $paketNoData = DB::connection('sqlAkyazi')->table('paketno')
+    $paketNoData = DB::connection('sqlSekerpinar')->table('paketno')
       ->where('hat', $hat)
       ->select('tarih', 'paketno')
       ->first();
@@ -360,7 +360,7 @@ class Kalite2Controller extends Controller
         }
       }
 
-      DB::connection('sqlAkyazi')->table('paketno')
+      DB::connection('sqlSekerpinar')->table('paketno')
         ->where('hat', $hat)
         ->update([
           'tarih' => $tarih,

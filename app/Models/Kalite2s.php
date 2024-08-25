@@ -27,6 +27,7 @@ class Kalite2s extends Model
     'saat',
     'operator',
     'mamulkodu',
-    'basildi'
+    'basildi',
+    'kalinlik'
   ];
 }

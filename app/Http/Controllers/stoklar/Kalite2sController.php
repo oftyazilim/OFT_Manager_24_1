@@ -6,101 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Models\Kalite2s;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Psy\Readline\Hoa\Console;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\JsonResponse;
-use Maatwebsite\Excel\Facades\Excel;
-use Box\Spout\Writer\Common\Creator\WriterEntityFactory;
-use Box\Spout\Common\Entity\Style\Color;
-use Box\Spout\Writer\Common\Creator\Style\StyleBuilder;
-use DateTime;
 
 class Kalite2sController extends Controller
 {
-
-  // public function exportExcel(Request $request)
-  // {
-  //   $defaultStyle = (new StyleBuilder())
-  //     ->setFontSize(11)
-  //     ->setFontName('Calibri')
-  //     ->build();
-
-  //   $writer = WriterEntityFactory::createXLSXWriter();
-  //   $writer->openToBrowser('kalite2.xlsx');
-
-  //   $baslikStyle = (new StyleBuilder())
-  //     ->setBackgroundColor(Color::GREEN)
-  //     ->setFontColor(Color::WHITE)
-  //     ->setFontSize(11)
-  //     ->setFontBold()
-  //     ->build();
-
-  //   $tarihStyle = (new StyleBuilder())
-  //     ->setFormat('d-mm-YY')
-  //     ->setFontSize(11)
-  //     ->setFontName('Calibri')
-  //     ->build();
-
-  //   // Başlık satırı
-  //   $row = WriterEntityFactory::createRowFromArray([
-  //     'MAMÜL',
-  //     'BOY',
-  //     'NEVİ',
-  //     'GRÇ AD',
-  //     'GRÇ KG',
-  //     'STM AD',
-  //     'STM KG',
-  //     'PAKET NO',
-  //     'TARİH',
-  //     'SAAT',
-  //     'OPERATÖR',
-  //     'MAMUL KODU',
-  //     'BASILDI',
-  //     'id'
-  //   ], $baslikStyle);
-
-  //   $writer->addRow($row);
-
-  //   // Verileri ekleme
-  //   $search = $request->input('search');
-  //   if (empty($search)) {
-  //     $kalite2Veriler = Kalite2s::all();
-  //   } else {
-  //     $kalite2Veriler = Kalite2s::where('mamul', 'LIKE', "%{$search}%")
-  //       ->orWhere('nevi', 'LIKE', "%{$search}%")
-  //       ->orWhere('pkno', 'LIKE', "%{$search}%")
-  //       ->orWhere('operator', 'LIKE', "%{$search}%")
-  //       ->get();
-  //   }
-
-  //   foreach ($kalite2Veriler as $veri) {
-  //     $tarih = strtotime($veri->tarih);
-  //     $cells = [
-  //       WriterEntityFactory::createCell($veri->mamul, $defaultStyle),
-  //       WriterEntityFactory::createCell($veri->boy, $defaultStyle),
-  //       WriterEntityFactory::createCell($veri->nevi, $defaultStyle),
-  //       WriterEntityFactory::createCell((int) $veri->adet2, $defaultStyle),
-  //       WriterEntityFactory::createCell((float) $veri->kantarkg, $defaultStyle),
-  //       WriterEntityFactory::createCell((int) $veri->adet, $defaultStyle),
-  //       WriterEntityFactory::createCell((float) $veri->kg, $defaultStyle),
-  //       WriterEntityFactory::createCell($veri->pkno, $defaultStyle),
-  //       WriterEntityFactory::createCell(25569 + (($tarih + 10800) / 86400), $tarihStyle),
-  //       WriterEntityFactory::createCell($veri->saat, $defaultStyle),
-  //       WriterEntityFactory::createCell($veri->operator, $defaultStyle),
-  //       WriterEntityFactory::createCell($veri->mamulkodu, $defaultStyle),
-  //       WriterEntityFactory::createCell($veri->basildi, $defaultStyle),
-  //       WriterEntityFactory::createCell($veri->id, $defaultStyle)
-  //     ];
-
-  //     $row = WriterEntityFactory::createRow($cells);
-
-  //     $writer->addRow($row);
-  //   }
-
-  //   $writer->close();
-  // }
-
   public function exportExcel(Request $request)
   {
     $search = $request->input('search');
@@ -116,35 +27,6 @@ class Kalite2sController extends Controller
 
     // JSON formatında döndürün
     return response()->json($kalite2Veriler);
-  }
-
-  public function getKalite2()
-  {
-    $kalite2 = Kalite2s::all();
-
-    $mamullers = DB::connection('sqlSekerpinar')
-      ->table('mamuller')
-      ->select('mamul')
-      ->where('tip', 'Boru')
-      ->orWhere('tip', 'Profil')
-      ->distinct()
-      ->get();
-
-    $nevi = DB::connection('sqlSekerpinar')
-      ->table('mamuller')
-      ->select('nevi')
-      ->where('tip', 'Boru')
-      ->orWhere('tip', 'Profil')
-      ->distinct()
-      ->get();
-
-    $hatlar = DB::connection('sqlSekerpinar')
-      ->table('caldurum')
-      ->select('hat')
-      ->distinct()
-      ->get();
-
-    return view('content.stoklar.kalite2s', compact('mamullers', 'kalite2', 'hatlar', 'nevi'));
   }
 
   public function kompleAl()
@@ -331,7 +213,7 @@ class Kalite2sController extends Controller
         ->where('mamul', $request->mamul)
         ->where('nevi', $request->nevi)
         ->first();
-      $teorikKg = $request->adet * $mamuller->minkg * ($request->boy / 1000);
+      $teorikKg = $request->adet2 * $mamuller->minkg * ($request->boy / 1000);
 
       $kayit = Kalite2s::updateOrCreate(
         ['id' => $kayitID],
@@ -339,7 +221,7 @@ class Kalite2sController extends Controller
           'mamul' => $request->mamul,
           'boy' => $request->boy,
           'nevi' => $request->nevi,
-          'adet2' => $request->adet,
+          'adet2' => $request->adet2,
           'kg' => $teorikKg,
           'hat' => $request->hat,
           'mamulkodu' => $mamuller->mamulkodu,
@@ -362,7 +244,7 @@ class Kalite2sController extends Controller
         ->where('mamul', $request->mamul)
         ->where('nevi', $request->nevi)
         ->first();
-      $teorikKg = $request->adet * $mamuller->minkg * ($request->boy / 1000);
+      $teorikKg = $request->adet2 * $mamuller->minkg * ($request->boy / 1000);
 
       $kayit = Kalite2s::updateOrCreate(
         ['id' => $kayitID],
@@ -376,7 +258,8 @@ class Kalite2sController extends Controller
           'operator' => $operatorName,
           'nevi' => $request->nevi,
           'mamulkodu' => $mamuller->mamulkodu,
-          'adet2' => $request->adet,
+          'adet' => $request->adet2,
+          'adet2' => $request->adet2,
           'kg' => $teorikKg,
           'kantarkg' => $request->kantarkg,
           'kalinlik' => $mamuller->kalinlik,

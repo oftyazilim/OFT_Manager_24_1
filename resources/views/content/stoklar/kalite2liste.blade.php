@@ -20,7 +20,6 @@
 <!-- Page Scripts -->
 @section('page-script')
     @vite(['resources/assets/js/stoklar-kalite2-list.js'])
-
 @endsection
 
 
@@ -78,6 +77,7 @@
             </div>
         </div>
     </div>
+{{-- <button id = "exportExcelButton1">Excele</button> --}}
 
     <div class="card mt-2">
         <div class="card">
@@ -88,9 +88,10 @@
                             <th>GÖSTER</th>
                             <th>MAMÜL</th>
                             <th>BOY</th>
-                            <th>GERÇ.KG</th>
-                            <th>ADET</th>
-                            <th>TEOR.KG</th>
+                            <th>GERÇEK ADET</th>
+                            <th>GERÇEK KG</th>
+                            <th>SİSTEM ADET</th>
+                            <th>SİSTEM KG</th>
                             <th>NEVİ</th>
                             <th style="text-align: center;">PAKET NO</th>
                             <th>HAT</th>
@@ -108,6 +109,7 @@
                             <th></th>
                             <th colspan="2">Genel Toplam :</th>
                             <th style="font-weight: bold; font-size: 14px; text-align: right;"></th>
+                            <th></th>
                             <th></th>
                             <th></th>
                             <th></th>
@@ -151,9 +153,9 @@
                             aria-label="6000" name="boy" />
                     </div>
                     <div class="mb-6">
-                        <label class="form-label" for="adet">Adet</label>
-                        <input type="number" id="adet" step="1" class="form-control" placeholder="0"
-                            aria-label="0" name="adet" />
+                        <label class="form-label" for="adet2">Adet</label>
+                        <input type="number" id="adet2" step="1" class="form-control" placeholder="0"
+                            aria-label="0" name="adet2" />
                     </div>
                     <div class="mb-6">
                         <label class="form-label" for="kantarkg">Kantar Kg</label>
@@ -182,7 +184,7 @@
                     </div>
                     <div class="mb-6">
                         <label class="form-check m-0">
-                            <input id="kayit-basildi" type="checkbox" name="basildi" class="form-check-input"
+                            <input id="basildi" type="checkbox" name="basildi" class="form-check-input"
                                 value="" />
                             <span class="form-check-label">Basıldı</span>
                         </label>
@@ -195,5 +197,4 @@
 
 
     </div>
-
-@endsection
+    @endsection
