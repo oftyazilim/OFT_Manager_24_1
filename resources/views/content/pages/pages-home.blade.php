@@ -28,7 +28,7 @@
         <div class="card h-50">
             <div class="card-header pb-0 d-flex justify-content-between">
                 <div class="card-title mb-0">
-                    <h5 class="mb-1">Üretim Raporu</h5>
+                    <h5 class="mb-1">Haftalık Durum Raporu</h5>
                     <p class="card-subtitle">Son 7 Günün Ton Bazında Dağılımı</p>
                 </div>
             </div>
@@ -51,7 +51,7 @@
                             <div class="d-flex gap-2 align-items-center">
                                 <div class="badge rounded bg-label-primary p-1"><i class="ti ti-currency-dollar ti-sm"></i>
                                 </div>
-                                <h6 class="mb-0 fw-normal">Earnings</h6>
+                                <h6 class="mb-0 fw-normal">Satış</h6>
                             </div>
                             <h4 class="my-2">$545.69</h4>
                             <div class="progress w-75" style="height:4px">
@@ -62,7 +62,7 @@
                         <div class="col-12 col-sm-4">
                             <div class="d-flex gap-2 align-items-center">
                                 <div class="badge rounded bg-label-info p-1"><i class="ti ti-chart-pie-2 ti-sm"></i></div>
-                                <h6 class="mb-0 fw-normal">Profit</h6>
+                                <h6 class="mb-0 fw-normal">Üretim</h6>
                             </div>
                             <h4 class="my-2">$256.34</h4>
                             <div class="progress w-75" style="height:4px">
@@ -74,7 +74,7 @@
                             <div class="d-flex gap-2 align-items-center">
                                 <div class="badge rounded bg-label-danger p-1"><i class="ti ti-brand-paypal ti-sm"></i>
                                 </div>
-                                <h6 class="mb-0 fw-normal">Expense</h6>
+                                <h6 class="mb-0 fw-normal">Hammadde</h6>
                             </div>
                             <h4 class="my-2">$74.19</h4>
                             <div class="progress w-75" style="height:4px">
