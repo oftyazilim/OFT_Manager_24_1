@@ -4,10 +4,9 @@
 
 'use strict';
 
-import ApexCharts from "apexcharts";
+import ApexCharts from 'apexcharts';
 
 (function () {
-
   document.getElementById('baslik').innerHTML = ' Dashboard';
 
   window.config = {
@@ -65,7 +64,6 @@ import ApexCharts from "apexcharts";
     grayColor = '#817D8D';
   }
 
-
   // Earning Reports Bar Chart
   // --------------------------------------------------------------------
   const weeklyEarningReportsEl = document.querySelector('#weeklyEarningReports'),
@@ -111,6 +109,7 @@ import ApexCharts from "apexcharts";
       },
       series: [
         {
+          name: 'tonaj',
           data: [40, 65, 50, 45, 90, 55, 70]
         }
       ],
@@ -118,7 +117,7 @@ import ApexCharts from "apexcharts";
         show: false
       },
       xaxis: {
-        categories: ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'],
+        categories: ['Pt', 'Sl', 'Çr', 'Pr', 'Cm', 'Ct', 'Pz'],
         axisBorder: {
           show: false
         },
@@ -139,7 +138,7 @@ import ApexCharts from "apexcharts";
         }
       },
       tooltip: {
-        enabled: false
+        enabled: true
       },
       responsive: [
         {
@@ -152,11 +151,60 @@ import ApexCharts from "apexcharts";
         }
       ]
     };
+
+  let weeklyEarningReports;
+
+  // if (typeof weeklyEarningReportsEl !== undefined && weeklyEarningReportsEl !== null) {
+  //   const weeklyEarningReports = new ApexCharts(weeklyEarningReportsEl, weeklyEarningReportsConfig);
+  //   weeklyEarningReports.render();
+  // }
+
   if (typeof weeklyEarningReportsEl !== undefined && weeklyEarningReportsEl !== null) {
-    const weeklyEarningReports = new ApexCharts(weeklyEarningReportsEl, weeklyEarningReportsConfig);
+    weeklyEarningReports = new ApexCharts(weeklyEarningReportsEl, weeklyEarningReportsConfig);
     weeklyEarningReports.render();
   }
 
+  function updateWeeklyEarningReports() {
+    // Here you would fetch new data from your Laravel backend, e.g., via Axios or Fetch API.
+    // For example:
+    // axios.get('/api/weekly-earnings').then(response => {
+    //   weeklyEarningReports.updateSeries([{ data: response.data }]);
+    // });
+
+    const newData = [
+      Math.random() * 100,
+      Math.random() * 100,
+      Math.random() * 100,
+      Math.random() * 100,
+      Math.random() * 100,
+      Math.random() * 100,
+      Math.random() * 100
+    ];
+
+    weeklyEarningReports.updateSeries([{ data: newData }]);
+  }
+
+  function veriAl() {
+    $.ajax({
+      type: 'GET',
+      url: '/dashboard/verial',
+      success: function (response) {
+        let data = response;
+        document.getElementById('uretimTon').innerHTML = data[0] + '<span style="font-size: 14px;"> Ton</span>';
+      },
+      error: function (error) {
+        console.log(error);
+      }
+    });
+  }
+
+  setInterval(
+    function () {
+      updateWeeklyEarningReports(); // Fonksiyon çağrısı
+      veriAl(); // Eğer this bağlamında bir methodsa, doğru bağlamda çalıştığından emin olun
+    }.bind(this),
+    5000
+  );
 
   // Filter form control to default size
   // ? setTimeout used for multilingual table initialization

@@ -36,8 +36,8 @@
                 <div class="row align-items-center g-md-8">
                     <div class="col-12 col-md-5 d-flex flex-column">
                         <div class="d-flex gap-2 align-items-center mb-3 flex-wrap">
-                            <h2 class="mb-0">35 Ton</h2>
-                            <div class="badge rounded bg-label-success">+4.2%</div>
+                            <h2 id="uretimFark" class="mb-0">35 Ton</h2>
+                            <div id="uretimFarkYuzde" class="badge rounded bg-label-success">+4.2%</div>
                         </div>
                         <small class="text-body">Değerlendirme önceki haftanın ortalamasına göre yapılmaktadır</small>
                     </div>
@@ -53,7 +53,7 @@
                                 </div>
                                 <h6 class="mb-0 fw-normal">Satış</h6>
                             </div>
-                            <h4 class="my-2">190 Ton</h4>
+                            <h4 id="satisTon" class="my-2">190 Ton</h4>
                             <div class="progress w-75" style="height:4px">
                                 <div class="progress-bar" role="progressbar" style="width: 65%" aria-valuenow="65"
                                     aria-valuemin="0" aria-valuemax="100"></div>
@@ -64,7 +64,7 @@
                                 <div class="badge rounded bg-label-info p-1"><i class="ti ti-chart-pie-2 ti-sm"></i></div>
                                 <h6 class="mb-0 fw-normal">Üretim</h6>
                             </div>
-                            <h4 class="my-2">224 Ton</h4>
+                            <h4 id="uretimTon" class="my-2">0 Ton</h4>
                             <div class="progress w-75" style="height:4px">
                                 <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50"
                                     aria-valuemin="0" aria-valuemax="100"></div>
@@ -76,7 +76,7 @@
                                 </div>
                                 <h6 class="mb-0 fw-normal">Hammadde</h6>
                             </div>
-                            <h4 class="my-2">235 Ton</h4>
+                            <h4 id="hammaddeTon" class="my-2">235 Ton</h4>
                             <div class="progress w-75" style="height:4px">
                                 <div class="progress-bar bg-danger" role="progressbar" style="width: 65%" aria-valuenow="65"
                                     aria-valuemin="0" aria-valuemax="100"></div>

@@ -45,14 +45,16 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
   Route::resource('/stok-list', Kalite2Controller::class);
   Route::get('/stok/verial', [Kalite2Controller::class, 'veriAl']);
   Route::get('/export/excel', [Kalite2Controller::class, 'exportExcel']);
-
-
+  
+  
   // 2. Kaliteler - Şekerpınar
   Route::get('/stoklar/kalite2sliste', [Kalite2sController::class, 'getKalite2liste'])->name('stoklar.kalite2sliste');
   Route::resource('/stok-lists', Kalite2sController::class);
   Route::get('/stok/verials', [Kalite2sController::class, 'veriAl']);
   Route::get('/export/excels', [Kalite2sController::class, 'exportExcel']);
-
+  
+  // Dashboard
+  Route::get('/dashboard/verial', [HomePage::class, 'veriAl']);
 
 
 
