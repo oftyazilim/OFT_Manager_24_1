@@ -184,6 +184,11 @@ import ApexCharts from 'apexcharts';
     weeklyEarningReports.updateSeries([{ data: newData }]);
   }
 
+  document.addEventListener('DOMContentLoaded', function () {
+    // Çalıştırmak istediğiniz JavaScript kodu
+    veriAl();
+  });
+
   function veriAl() {
     $.ajax({
       type: 'GET',
@@ -191,6 +196,13 @@ import ApexCharts from 'apexcharts';
       success: function (response) {
         let data = response;
         document.getElementById('uretimTon').innerHTML = data[0] + '<span style="font-size: 14px;"> Ton</span>';
+        document.getElementById('satisTon').innerHTML = data[1] + '<span style="font-size: 14px;"> Ton</span>';
+        document.getElementById('hammaddeTon').innerHTML = data[2] + '<span style="font-size: 14px;"> Ton</span>';
+        var gecenHafta = data[3];
+        var buHafta = data[4];
+        var oran = buHafta / gecenHafta;
+        document.getElementById('uretimFark').innerHTML = Math.round(buHafta - gecenHafta) + '<span style="font-size: 14px;"> Ton</span>';
+        document.getElementById('uretimFarkYuzde').innerHTML = '% ' + Math.round(1 - oran * 100) + '<span style="font-size: 14px;"></span>';
       },
       error: function (error) {
         console.log(error);

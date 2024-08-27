@@ -6,35 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Models\Uretim;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomePage extends Controller
 {
   public function index()
   {
-    //$tonaj = $this->veriAl();
-
-    // $mamullers = DB::connection('sqlAkyazi')
-    //   ->table('mamuller')
-    //   ->select('mamul')
-    //   ->where('tip', 'Boru')
-    //   ->orWhere('tip', 'Profil')
-    //   ->distinct()
-    //   ->get();
-
-    // $nevi = DB::connection('sqlAkyazi')
-    //   ->table('mamuller')
-    //   ->select('nevi')
-    //   ->where('tip', 'Boru')
-    //   ->orWhere('tip', 'Profil')
-    //   ->distinct()
-    //   ->get();
-
-    // $hatlar = DB::connection('sqlAkyazi')
-    //   ->table('caldurum')
-    //   ->select('hat')
-    //   ->distinct()
-    //   ->get();
-
     return view('content.pages.pages-home');
   }
 
@@ -43,16 +20,23 @@ class HomePage extends Controller
     $tonaj = number_format(Uretim:: //where('FABRIKA', 'Akyazı')->
       where('TARIH', '>', Carbon::now()->startOfMonth())
       ->get()->sum('KG') / 1000, 0, ",", ".");
-    // $kalite2 = Kalite2::where('silindi', false)->get();
 
-    // $paketCount = $kalite2->count();
-    // $toplamKg = number_format($kalite2->sum('kantarkg'), 0, ',', '.');
-
-    // $toplamKgHr = number_format($kalite2->where('silindi', false)->where('nevi', '==', 'HR')->sum('kantarkg'), 0, ',', '.');
-    // $toplamKgDiger = number_format($kalite2->where('silindi', false)->where('nevi', '!=', 'HR')->sum('kantarkg'), 0, ',', '.');
+      $siparisKgAy = number_format(DB::connection('sqlSekerpinar')->table('OFTV_MUS_SIP_AY')->get()->sum('topkg'), 0, ',', '.');
+      $hammaddeKgAy = DB::connection('sqlAkyazi')->table('OFTV_HMM_GRS_AY')->get()->sum('KG');
+      $hammaddeKgAy += DB::connection('sqlSekerpinar')->table('OFTV_HMM_GRS_AY')->get()->sum('KG');
+  
+      $gecenHaftaTonaj = Uretim::where('TARIH', '>=', Carbon::now()->subWeek()->startOfWeek())
+              ->where('TARIH', '<=', Carbon::now()->subWeek()->startOfWeek()->addDays(Carbon::now()->dayOfWeek)->endOfDay())
+              ->get()->sum('KG') / 1000;
+      $buHaftaTonaj = Uretim::where('TARIH', '>=', Carbon::now()->startOfWeek())
+              ->get()->sum('KG') / 1000;
 
     return response()->json([
-      $tonaj
+      $tonaj,
+      $siparisKgAy,
+      number_format($hammaddeKgAy, 0, ',', '.'),
+      $gecenHaftaTonaj,
+      $buHaftaTonaj
     ]);
   }
 }
