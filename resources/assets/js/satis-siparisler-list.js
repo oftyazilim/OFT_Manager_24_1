@@ -24,6 +24,9 @@ $(function () {
     var dt_user = dt_user_table.DataTable({
       processing: true,
       serverSide: true,
+      paging: false,
+      scrollCollapse: true,
+      scrollY: '50vh',
       ajax: {
         url: baseUrl + 'satis-list'
       },
@@ -149,17 +152,17 @@ $(function () {
       ],
       order: [[7, 'desc']],
 
-      lengthMenu: [10, 15, 20, 50, 70, 100], //for length of menu
-      language: {
-        sLengthMenu: '_MENU_',
-        search: '',
-        searchPlaceholder: 'Kullanıcı Ara',
-        info: 'Kayıt: _END_ / _TOTAL_ ',
-        paginate: {
-          next: '<i class="ti ti-chevron-right ti-sm"></i>',
-          previous: '<i class="ti ti-chevron-left ti-sm"></i>'
-        }
-      },
+      // lengthMenu: [10, 15, 20, 50, 70, 100], //for length of menu
+      // language: {
+      //   sLengthMenu: '_MENU_',
+      //   search: '',
+      //   searchPlaceholder: 'Kullanıcı Ara',
+      //   info: 'Kayıt: _END_ / _TOTAL_ ',
+      //   paginate: {
+      //     next: '<i class="ti ti-chevron-right ti-sm"></i>',
+      //     previous: '<i class="ti ti-chevron-left ti-sm"></i>'
+      //   }
+      // },
       // For responsive popup
       responsive: {
         details: {

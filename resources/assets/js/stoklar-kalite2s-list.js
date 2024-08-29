@@ -504,8 +504,8 @@ $(function () {
         offCanvasForm.offcanvas('hide');
         Swal.fire({
           icon: 'success',
-          title: `Successfully ${status}!`,
-          text: `User ${status} Successfully.`,
+          title: `Başarılı!`,
+          text: `Kayıt başarıyla oluşturuldu`,
           customClass: {
             confirmButton: 'btn btn-success'
           }
