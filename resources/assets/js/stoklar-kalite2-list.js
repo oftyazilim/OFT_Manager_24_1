@@ -337,7 +337,6 @@ $(function () {
     }).then(function (result) {
       if (result.value) {
         // delete the data
-        alert(temp_id);
         $.ajax({
           type: 'DELETE',
           url: `${baseUrl}stok-list/${temp_id}`,
@@ -393,8 +392,15 @@ $(function () {
 
   // changing the title
   $('.add-new').on('click', function () {
-    // $('#record_id').val(''); //reseting input field
-    // $('#offcanvasAddLabel').html('Kayıt Ekle');
+    $('#record_id').val(''); //reseting input field
+    $('#hat').val(''); //reseting input field
+    $('#mamul').val(''); //reseting input field
+    $('#boy').val(''); //reseting input field
+    $('#nevi').val(''); //reseting input field
+    $('#adet2').val(''); //reseting input field
+    $('#kantarkg').val(''); //reseting input field
+    $('#basildi').prop('checked', false);
+    $('#offcanvasAddLabel').html('Kayıt Ekle');
   });
 
   // Filter form control to default size
@@ -477,8 +483,8 @@ $(function () {
         offCanvasForm.offcanvas('hide');
         Swal.fire({
           icon: 'success',
-          title: `Successfully ${status}!`,
-          text: `User ${status} Successfully.`,
+          title: `Başarılı!`,
+          text: `Kayıt başarıyla oluşturuldu`,
           customClass: {
             confirmButton: 'btn btn-success'
           }
