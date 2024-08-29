@@ -75,7 +75,7 @@
                             <div class="d-flex gap-2 align-items-center">
                                 <div class="badge rounded bg-label-danger p-1"><i class="ti ti-brand-paypal ti-sm"></i>
                                 </div>
-                                <h6 class="mb-0 fw-normal">Hammadde Giriş</h6>
+                                <h6 class="mb-0 fw-normal">Hammadde</h6>
                             </div>
                             <h4 id="hammaddeTon" class="my-2">0 Ton</h4>
                             {{-- <div class="progress w-75" style="height:4px">

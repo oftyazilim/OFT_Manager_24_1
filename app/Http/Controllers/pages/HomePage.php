@@ -17,14 +17,14 @@ class HomePage extends Controller
 
   public function veriAl()
   {
-    $tonaj = number_format(Uretim:: //where('FABRIKA', 'Akyazı')->
-      where('TARIH', '>', Carbon::now()->startOfMonth())
+    $tonaj = number_format(Uretim::
+      where('TARIH', '>=', Carbon::now()->startOfMonth())
       ->get()->sum('KG') / 1000, 0, ",", ".");
 
       $siparisKgAy = number_format(DB::connection('sqlSekerpinar')->table('OFTV_MUS_SIP_AY')->get()->sum('topkg'), 0, ',', '.');
       $hammaddeKgAy = DB::connection('sqlAkyazi')->table('OFTV_HMM_GRS_AY')->get()->sum('KG');
       $hammaddeKgAy += DB::connection('sqlSekerpinar')->table('OFTV_HMM_GRS_AY')->get()->sum('KG');
-  
+
       $gecenHaftaTonaj = Uretim::where('TARIH', '>=', Carbon::now()->subWeek()->startOfWeek())
               ->where('TARIH', '<=', Carbon::now()->subWeek()->startOfWeek()->addDays(Carbon::now()->dayOfWeek)->endOfDay())
               ->get()->sum('KG') / 1000;

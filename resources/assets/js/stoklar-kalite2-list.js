@@ -20,6 +20,9 @@ $(function () {
     var dt_record = dt_table.DataTable({
       processing: true,
       serverSide: true,
+      paging: false,
+      scrollCollapse: true,
+      scrollY: '50vh',
       ajax: {
         url: baseUrl + 'stok-list'
       },
@@ -70,17 +73,17 @@ $(function () {
         '<"col-sm-12 col-md-6"i>' +
         '<"col-sm-12 col-md-6"p>' +
         '>',
-      lengthMenu: [10, 15, 20, 50, 70, 100], //for length of menu
-      language: {
-        sLengthMenu: '_MENU_',
-        search: '',
-        searchPlaceholder: 'Ara',
-        info: 'Kayıt: _END_ / _TOTAL_ ',
-        paginate: {
-          next: '<i class="ti ti-chevron-right ti-sm"></i>',
-          previous: '<i class="ti ti-chevron-left ti-sm"></i>'
-        }
-      },
+      // lengthMenu: [10, 15, 20, 50, 70, 100], //for length of menu
+      // language: {
+      //   sLengthMenu: '_MENU_',
+      //   search: '',
+      //   searchPlaceholder: 'Ara',
+      //   info: 'Kayıt: _END_ / _TOTAL_ ',
+      //   paginate: {
+      //     next: '<i class="ti ti-chevron-right ti-sm"></i>',
+      //     previous: '<i class="ti ti-chevron-left ti-sm"></i>'
+      //   }
+      // },
       columnDefs: [
         {
           //For Responsive

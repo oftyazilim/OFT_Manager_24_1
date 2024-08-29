@@ -16,9 +16,10 @@ class Kalite2sController extends Controller
   {
     $search = $request->input('search');
     if (empty($search)) {
-      $kalite2Veriler = Kalite2s::where('silindi', false)->get();
+      $kalite2Veriler = Kalite2s::where('silindi', false)
+      ->where('sevk_edildi', false)->get();
     } else {
-      $kalite2Veriler = Kalite2s::where('silindi', false)->
+      $kalite2Veriler = Kalite2s::where('silindi', false)->where('sevk_edildi', false)->
       where('mamul', 'LIKE', "%{$search}%")
         ->orWhere('nevi', 'LIKE', "%{$search}%")
         ->orWhere('pkno', 'LIKE', "%{$search}%")
@@ -32,7 +33,7 @@ class Kalite2sController extends Controller
 
   public function kompleAl()
   {
-    $kalite2 = Kalite2s::where('silindi', false)->get();
+    $kalite2 = Kalite2s::where('silindi', false)->where('sevk_edildi', false)->get();
 
     return response()->json([
       $kalite2,
@@ -41,7 +42,7 @@ class Kalite2sController extends Controller
 
   public function getKalite2liste()
   {
-    $kalite2 = Kalite2s::where('silindi', false)->get();
+    $kalite2 = Kalite2s::where('silindi', false)->where('sevk_edildi', false)->get();
 
     $mamullers = DB::connection('sqlSekerpinar')
       ->table('mamuller')
@@ -70,13 +71,13 @@ class Kalite2sController extends Controller
 
   public function veriAl()
   {
-    $kalite2 = Kalite2s::where('silindi', false)->get();
+    $kalite2 = Kalite2s::where('silindi', false)->where('sevk_edildi', false)->get();
 
     $paketCount = $kalite2->count();
     $toplamKg = number_format($kalite2->sum('kantarkg'), 0, ',', '.');
 
-    $toplamKgHr = number_format($kalite2->where('silindi', false)->where('nevi', '==', 'HR')->sum('kantarkg'), 0, ',', '.');
-    $toplamKgDiger = number_format($kalite2->where('silindi', false)->where('nevi', '!=', 'HR')->sum('kantarkg'), 0, ',', '.');
+    $toplamKgHr = number_format($kalite2->where('silindi', false)->where('sevk_edildi', false)->where('nevi', '==', 'HR')->sum('kantarkg'), 0, ',', '.');
+    $toplamKgDiger = number_format($kalite2->where('silindi', false)->where('sevk_edildi', false)->where('nevi', '!=', 'HR')->sum('kantarkg'), 0, ',', '.');
 
     return response()->json([
       $paketCount,
@@ -108,9 +109,9 @@ class Kalite2sController extends Controller
 
     $search = [];
 
-    $toplamKg = Kalite2s::where('silindi', false)->get()->sum('kantarkg');
+    $toplamKg = Kalite2s::where('silindi', false)->where('sevk_edildi', false)->get()->sum('kantarkg');
 
-    $totalData = Kalite2s::where('silindi', false)->get()->count();
+    $totalData = Kalite2s::where('silindi', false)->where('sevk_edildi', false)->get()->count();
 
     $totalFiltered = $totalData;
 
@@ -121,7 +122,7 @@ class Kalite2sController extends Controller
 
     if (empty($request->input('search.value'))) {
       $kalite2 = Kalite2s::where('silindi', false)
-        ->offset($start)
+      ->where('sevk_edildi', false)->offset($start)
         ->limit($limit)
         ->orderBy($order, $dir)
         ->get();
@@ -129,7 +130,8 @@ class Kalite2sController extends Controller
       $search = $request->input('search.value');
 
       $kalite2 = Kalite2s::where('silindi', false)
-        ->where('mamul', 'LIKE', "%{$search}%")
+      ->where('sevk_edildi', false)
+      ->where('mamul', 'LIKE', "%{$search}%")
         ->orWhere('nevi', 'LIKE', "%{$search}%")
         ->orWhere('pkno', 'LIKE', "%{$search}%")
         ->orWhere('operator', 'LIKE', "%{$search}%")->offset($start)
@@ -138,12 +140,12 @@ class Kalite2sController extends Controller
         ->get();
 
       $toplamKg = Kalite2s::where('silindi', false)
-        ->where('mamul', 'LIKE', "%{$search}%")
+      ->where('sevk_edildi', false)->where('mamul', 'LIKE', "%{$search}%")
         ->orWhere('boy', 'LIKE', "%{$search}%")
         ->orWhere('nevi', 'LIKE', "%{$search}%")->sum('kantarkg');
 
       $totalFiltered = Kalite2s::where('silindi', false)
-        ->where('mamul', 'LIKE', "%{$search}%")
+      ->where('sevk_edildi', false)->where('mamul', 'LIKE', "%{$search}%")
         ->orWhere('boy', 'LIKE', "%{$search}%")
         ->orWhere('nevi', 'LIKE', "%{$search}%")->count();
     }
