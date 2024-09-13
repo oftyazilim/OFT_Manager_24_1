@@ -25,8 +25,12 @@ $(function () {
       processing: true,
       serverSide: true,
       paging: false,
-      scrollCollapse: true,
-      scrollY: '50vh',
+      info: true,
+      scrollCollapse: false,
+      scrollY: '60vh',
+      infoCallback: function (settings, start, end, max, total, pre) {
+        return ' Listelenen kayıt sayısı:   ' + end;
+      },
       ajax: {
         url: baseUrl + 'satis-list'
       },
@@ -150,19 +154,11 @@ $(function () {
           className: 'text-center'
         }
       ],
+      language: {
+        search: '',
+        searchPlaceholder: 'Ara'
+      },
       order: [[7, 'desc']],
-
-      // lengthMenu: [10, 15, 20, 50, 70, 100], //for length of menu
-      // language: {
-      //   sLengthMenu: '_MENU_',
-      //   search: '',
-      //   searchPlaceholder: 'Kullanıcı Ara',
-      //   info: 'Kayıt: _END_ / _TOTAL_ ',
-      //   paginate: {
-      //     next: '<i class="ti ti-chevron-right ti-sm"></i>',
-      //     previous: '<i class="ti ti-chevron-left ti-sm"></i>'
-      //   }
-      // },
       // For responsive popup
       responsive: {
         details: {

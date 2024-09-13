@@ -32,8 +32,16 @@ $(function () {
       processing: true,
       serverSide: true,
       paging: false,
-      scrollCollapse: true,
-      scrollY: '50vh',
+      info: true,
+      scrollCollapse: false,
+      scrollY: '55vh',
+      infoCallback: function (settings, start, end, max, total, pre) {
+        return ' Listelenen kayıt sayısı:   ' + end;
+      },
+      language: {
+        search: '',
+        searchPlaceholder: 'Ara'
+      },
       ajax: {
         url: baseUrl + 'stok-lists'
       },

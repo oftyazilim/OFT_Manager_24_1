@@ -18,8 +18,7 @@ class Kalite2Controller extends Controller
     if (empty($search)) {
       $kalite2Veriler = Kalite2::where('silindi', false)->where('sevk_edildi', false)->get();
     } else {
-      $kalite2Veriler = Kalite2::where('silindi', false)->where('sevk_edildi', false)->
-      where('mamul', 'LIKE', "%{$search}%")
+      $kalite2Veriler = Kalite2::where('silindi', false)->where('sevk_edildi', false)->where('mamul', 'LIKE', "%{$search}%")
         ->orWhere('nevi', 'LIKE', "%{$search}%")
         ->orWhere('pkno', 'LIKE', "%{$search}%")
         ->orWhere('operator', 'LIKE', "%{$search}%")
@@ -68,9 +67,66 @@ class Kalite2Controller extends Controller
     return view('content.stoklar.Kalite2liste', compact('mamullers', 'kalite2', 'hatlar', 'nevi'));
   }
 
+  public function getKalite2sayim()
+  {
+    $kalite2 = Kalite2::where('silindi', false)
+      ->where('sevk_edildi', false)
+      ->where('sayildi', false)
+      ->get();
+
+    // $mamullers = DB::connection('sqlAkyazi')
+    //   ->table('mamuller')
+    //   ->select('mamul')
+    //   ->where('tip', 'Boru')
+    //   ->orWhere('tip', 'Profil')
+    //   ->distinct()
+    //   ->get();
+
+    // $nevi = DB::connection('sqlAkyazi')
+    //   ->table('mamuller')
+    //   ->select('nevi')
+    //   ->where('tip', 'Boru')
+    //   ->orWhere('tip', 'Profil')
+    //   ->distinct()
+    //   ->get();
+
+    // $hatlar = DB::connection('sqlAkyazi')
+    //   ->table('caldurum')
+    //   ->select('hat')
+    //   ->distinct()
+    //   ->get();
+
+    return view('content.stoklar.Kalite2sayim', compact('kalite2'));
+  }
+
   public function veriAl()
   {
     $kalite2 = Kalite2::where('silindi', false)->where('sevk_edildi', false)->get();
+
+    $paketCount = $kalite2->count();
+    $toplamKg = number_format($kalite2->sum('kantarkg'), 0, ',', '.');
+
+    $toplamKgHr = number_format($kalite2->where('silindi', false)->where('sevk_edildi', false)->where('nevi', '==', 'HR')->sum('kantarkg'), 0, ',', '.');
+    $toplamKgDiger = number_format($kalite2->where('silindi', false)->where('sevk_edildi', false)->where('nevi', '!=', 'HR')->sum('kantarkg'), 0, ',', '.');
+
+    return response()->json([
+      $paketCount,
+      $toplamKg,
+      $toplamKgHr,
+      $toplamKgDiger,
+    ]);
+  }
+
+  public function veriAlSayim(Request $request)
+  {
+    $filterValue = $request->input('filterValue', 0);
+
+    $kalite2 = Kalite2::where('silindi', false)
+    ->where('sevk_edildi', false)
+    ->when($filterValue < 2, function ($query) use ($filterValue) {
+        return $query->where('sayildi', $filterValue);
+    })
+    ->get();
 
     $paketCount = $kalite2->count();
     $toplamKg = number_format($kalite2->sum('kantarkg'), 0, ',', '.');
@@ -194,6 +250,121 @@ class Kalite2Controller extends Controller
     }
   }
 
+
+  public function indexSayim(Request $request)
+  {
+    $filterValue = $request->input('filterValue', default: 2);
+
+    $columns = [
+      1 => 'mamul',
+      2 => 'boy',
+      3 => 'adet2',
+      4 => 'kantarkg',
+      5 => 'adet',
+      6 => 'kg',
+      7 => 'nevi',
+      8 => 'pkno',
+      9 => 'hat',
+      10 => 'tarih',
+      11 => 'saat',
+      12 => 'operator',
+      13 => 'mamulkodu',
+      14 => 'basildi',
+      15 => 'id',
+    ];
+
+    $search = [];
+
+    $limit = $request->input('length');
+    $start = $request->input('start');
+    $order = $columns[$request->input('order.0.column')];
+    $dir = $request->input('order.0.dir');
+
+
+    if (empty($request->input('search.value'))) {
+      $kalite2 = Kalite2::where('silindi', false)
+      ->where('sevk_edildi', false)
+      ->when($filterValue < 2, function ($query) use ($filterValue) {
+          return $query->where('sayildi', $filterValue);
+      })
+      ->get();
+      $toplamKg = $kalite2->sum('kantarkg');
+    } else {
+      $search = $request->input('search.value');
+
+      $kalite2 = Kalite2::where('silindi', false)->where('sevk_edildi', false)
+        ->where('mamul', 'LIKE', "%{$search}%")
+        ->when($filterValue < 2, function ($query) use ($filterValue) {
+          return $query->where('sayildi', $filterValue);
+      })
+      ->orWhere('nevi', 'LIKE', "%{$search}%")
+        ->orWhere('pkno', 'LIKE', "%{$search}%")
+        ->orWhere('operator', 'LIKE', "%{$search}%")->offset($start)
+        ->limit($limit)
+        ->orderBy($order, $dir)
+        ->get();
+
+      $toplamKg = Kalite2::where('silindi', false)->where('sevk_edildi', false)
+        ->where('mamul', 'LIKE', "%{$search}%")
+        ->when($filterValue < 2, function ($query) use ($filterValue) {
+          return $query->where('sayildi', $filterValue);
+      })
+      ->orWhere('boy', 'LIKE', "%{$search}%")
+        ->orWhere('nevi', 'LIKE', "%{$search}%")->sum('kantarkg');
+
+      $totalFiltered = Kalite2::where('silindi', false)->where('sevk_edildi', false)
+        ->where('mamul', 'LIKE', "%{$search}%")
+        ->when($filterValue < 2, function ($query) use ($filterValue) {
+          return $query->where('sayildi', $filterValue);
+      })
+      ->orWhere('boy', 'LIKE', "%{$search}%")
+        ->orWhere('nevi', 'LIKE', "%{$search}%")->count();
+    }
+
+    $data = [];
+
+    if (!empty($kalite2)) {
+      // providing a dummy id instead of database ids
+      $ids = $start;
+
+      foreach ($kalite2 as $klt) {
+        $nestedData['mamul'] = $klt->mamul;
+        $nestedData['fake_id'] = ++$ids;
+        $nestedData['adet2'] = number_format($klt->adet2, 0, ',', '.');
+        $nestedData['boy'] = $klt->boy;
+        $nestedData['kantarkg'] = number_format($klt->kantarkg, 0, ',', '.');
+        $nestedData['adet'] = number_format($klt->adet, 0, ',', '.');
+        $nestedData['kg'] = number_format($klt->kg, 2, ',', '.');
+        $nestedData['nevi'] = $klt->nevi;
+        $nestedData['pkno'] = $klt->pkno;
+        $nestedData['hat'] = $klt->hat;
+        $nestedData['tarih'] = $klt->tarih;
+        $nestedData['saat'] = $klt->saat;
+        $nestedData['operator'] = $klt->operator;
+        $nestedData['mamulkodu'] = $klt->mamulkodu;
+        $nestedData['basildi'] = $klt->basildi;
+        $nestedData['id'] = $klt->id;
+
+        $data[] = $nestedData;
+      }
+    }
+
+    if ($data) {
+      return response()->json([
+        'draw' => intval($request->input('draw')),
+        'toplamKg' => number_format($toplamKg, 0, ',', '.'),
+        'code' => 200,
+        'data' => $data,
+      ]);
+    } else {
+      return response()->json([
+        'message' => 'Internal Server Error',
+        'code' => 500,
+        'data' => [],
+      ]);
+    }
+  }
+
   public function destroy($id)
   {
     // Mevcut kaydı bul
@@ -201,12 +372,12 @@ class Kalite2Controller extends Controller
 
     // Kayıt bulunduysa güncelle
     if ($kayit) {
-        $kayit->silen = Auth::user()->name;
-        $kayit->silindi = 1;
-        $kayit->silindi_at = now();
-        $kayit->save(); // Güncellenmiş veriyi kaydet
+      $kayit->silen = Auth::user()->name;
+      $kayit->silindi = 1;
+      $kayit->silindi_at = now();
+      $kayit->save(); // Güncellenmiş veriyi kaydet
 
-        return response()->json('Silindi');
+      return response()->json('Silindi');
     }
 
     // Kayıt bulunamadıysa hata mesajı döndür

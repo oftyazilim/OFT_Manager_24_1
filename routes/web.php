@@ -12,7 +12,11 @@ use App\Http\Controllers\laravel_example\UserManagement;
 use App\Http\Controllers\satis\SatisController;
 use App\Http\Controllers\stoklar\Kalite2Controller;
 use App\Http\Controllers\stoklar\Kalite2sController;
+use App\Http\Controllers\stoklar\StokSayimController;
 
+
+Route::get('/stok-sayimyap', [StokSayimController::class, 'sayimyap']);
+Route::post('/stok-sayim', [StokSayimController::class, 'sayim']);
 Route::get('/', [Landing::class, 'index'])->name('front-pages-landing');
 
 
@@ -42,17 +46,22 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
 
   // 2. Kaliteler - Akyazı
   Route::get('/stoklar/kalite2liste', [Kalite2Controller::class, 'getKalite2liste'])->name('stoklar.kalite2liste');
+  Route::get('/stoklar/kalite2sayim', [Kalite2Controller::class, 'getKalite2sayim'])->name('stoklar.kalite2sayim');
   Route::resource('/stok-list', Kalite2Controller::class);
   Route::get('/stok/verial', [Kalite2Controller::class, 'veriAl']);
+  Route::get('/stok/verialsayim', [Kalite2Controller::class, 'veriAlSayim']);
+  Route::get('/stok/indexsayim', [Kalite2Controller::class, 'indexSayim']);
+  // Route::get('/stok/sayimyap', [Kalite2Controller::class, 'sayimYap']);
   Route::get('/export/excel', [Kalite2Controller::class, 'exportExcel']);
-  
-  
+
+
   // 2. Kaliteler - Şekerpınar
   Route::get('/stoklar/kalite2sliste', [Kalite2sController::class, 'getKalite2liste'])->name('stoklar.kalite2sliste');
+  Route::get('/stoklar/kalite2ssayim', [Kalite2Controller::class, 'getKalite2ssayim'])->name('stoklar.kalite2ssayim');
   Route::resource('/stok-lists', Kalite2sController::class);
   Route::get('/stok/verials', [Kalite2sController::class, 'veriAl']);
   Route::get('/export/excels', [Kalite2sController::class, 'exportExcel']);
-  
+
   // Dashboard
   Route::get('/dashboard/verial', [HomePage::class, 'veriAl']);
 

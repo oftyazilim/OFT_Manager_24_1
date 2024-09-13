@@ -21,8 +21,12 @@ $(function () {
       processing: true,
       serverSide: true,
       paging: false,
-      scrollCollapse: true,
-      scrollY: '50vh',
+      info: true,
+      scrollCollapse: false,
+      scrollY: '55vh',
+      infoCallback: function (settings, start, end, max, total, pre) {
+        return ' Listelenen kayıt sayısı:   ' + end;
+      },
       ajax: {
         url: baseUrl + 'stok-list'
       },
@@ -64,6 +68,10 @@ $(function () {
         }
       ],
       order: [[15, 'desc']],
+      language: {
+        search: '',
+        searchPlaceholder: 'Ara'
+      },
       dom:
         '<"row"' +
         '<"col-md-2"<"ms-n2"l>>' +
@@ -73,17 +81,6 @@ $(function () {
         '<"col-sm-12 col-md-6"i>' +
         '<"col-sm-12 col-md-6"p>' +
         '>',
-      // lengthMenu: [10, 15, 20, 50, 70, 100], //for length of menu
-      // language: {
-      //   sLengthMenu: '_MENU_',
-      //   search: '',
-      //   searchPlaceholder: 'Ara',
-      //   info: 'Kayıt: _END_ / _TOTAL_ ',
-      //   paginate: {
-      //     next: '<i class="ti ti-chevron-right ti-sm"></i>',
-      //     previous: '<i class="ti ti-chevron-left ti-sm"></i>'
-      //   }
-      // },
       columnDefs: [
         {
           //For Responsive
