@@ -125,7 +125,7 @@ class StokSayimController extends Controller
     }
 
     public function resetSayildis(){
-    Kalite2::where('silindi', false)
+    Kalite2s::where('silindi', false)
       ->where('sevk_edildi', false)
       ->update(['sayildi' => 0]);
 
