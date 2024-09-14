@@ -19,7 +19,7 @@
 
 <!-- Page Scripts -->
 @section('page-script')
-    @vite(['resources/assets/js/stoklar-kalite2-sayim.js'])
+    @vite(['resources/assets/js/stoklar-kalite2s-sayim.js'])
 @endsection
 
 
@@ -77,6 +77,7 @@
             </div>
         </div>
     </div>
+
 
 
 

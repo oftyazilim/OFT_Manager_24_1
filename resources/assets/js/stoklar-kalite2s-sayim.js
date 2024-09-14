@@ -3,7 +3,7 @@ import Swal from 'sweetalert2';
 import axios from 'axios';
 
 $(function () {
-  document.getElementById('baslik').innerHTML = '2. Kalite Listesi (Akyazı)';
+  document.getElementById('baslik').innerHTML = '2. Kalite Listesi (Ş.Pınar)';
 
   var dt_table = $('.datatables-kalite2'),
     filterValue = 2;
@@ -26,7 +26,7 @@ $(function () {
         return ' Listelenen kayıt sayısı:   ' + end;
       },
       ajax: {
-        url: baseUrl + 'stok/indexsayim',
+        url: baseUrl + 'stok/indexsayims',
         data: function (d) {
           // Filtre değerini ajax isteğine ekle
           d.filterValue = filterValue;
@@ -323,7 +323,7 @@ $(function () {
 
     $.ajax({
       method: 'GET',
-      url: baseUrl + 'stok/verialsayim',
+      url: baseUrl + 'stok/verialsayims',
       data: {
         filterValue: filterValue // Butondan gelen parametre
       },
@@ -342,7 +342,7 @@ $(function () {
   }
 
   $('.sayimyap').on('click', function () {
-    window.location.href = '/stok-sayimyap';
+    window.location.href = '/stok-sayimyaps';
   });
 
   $('.tumu').on('click', function () {
@@ -365,7 +365,7 @@ $(function () {
 
   $('.sifirla').on('click', function () {
     axios
-      .post('/reset-sayildi')
+      .post('/reset-sayildis')
       .then(function (response) {
         Swal.fire({
           title: 'Sayım sıfırlandı',
