@@ -1,6 +1,5 @@
 'use strict';
 import Swal from 'sweetalert2';
-import ExcelJS from 'exceljs';
 import axios from 'axios';
 
 $(function () {
@@ -16,7 +15,6 @@ $(function () {
     }
   });
 
-  //   // Users datatable
   if (dt_table.length) {
     var dt_record = dt_table.DataTable({
       processing: true,
