@@ -51,7 +51,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
   Route::get('/stok/verial', [Kalite2Controller::class, 'veriAl']);
   Route::get('/stok/verialsayim', [Kalite2Controller::class, 'veriAlSayim']);
   Route::get('/stok/indexsayim', [Kalite2Controller::class, 'indexSayim']);
-  // Route::get('/stok/sayimyap', [Kalite2Controller::class, 'sayimYap']);
+  Route::post('/reset-sayildi', [StokSayimController::class, 'resetSayildi'])->name('reset.sayildi');
   Route::get('/export/excel', [Kalite2Controller::class, 'exportExcel']);
 
 

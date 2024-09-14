@@ -24,24 +24,31 @@
       "slug": "stoklar",
       "submenu": [
         {
-          "url": "stoklar/kalite2liste",
-          "name": "2. Kalite Liste (Akyazı)",
-          "slug": "stoklar-kalite2liste"
-        },
-        {
-          "url": "stoklar/kalite2sliste",
-          "name": "2. Kalite Liste (Ş.Pınar)",
-          "slug": "stoklar-kalite2sliste"
-        },
-        {
-          "url": "stoklar/kalite2sayim",
-          "name": "2. Kalite Sayım (Akyazı)",
-          "slug": "stoklar-kalite2sayim"
-        },
-        {
-          "url": "stoklar/kalite2ssayim",
-          "name": "2. Kalite Sayım (Ş.Pınar)",
-          "slug": "stoklar-kalite2ssayim"
+          "name": "2. Kalite",
+          "icon": "menu-icon tf-icons ti ti-layout-grid-add",
+          "slug": "stok2kalite",
+          "submenu": [
+            {
+              "url": "stoklar/kalite2liste",
+              "name": "Liste (Akyazı)",
+              "slug": "stoklar-kalite2liste"
+            },
+            {
+              "url": "stoklar/kalite2sliste",
+              "name": "Liste (Ş.Pınar)",
+              "slug": "stoklar-kalite2sliste"
+            },
+            {
+              "url": "stoklar/kalite2sayim",
+              "name": "Sayım (Akyazı)",
+              "slug": "stoklar-kalite2sayim"
+            },
+            {
+              "url": "stoklar/kalite2ssayim",
+              "name": "Sayım (Ş.Pınar)",
+              "slug": "stoklar-kalite2ssayim"
+            }
+          ]
         }
       ]
     },

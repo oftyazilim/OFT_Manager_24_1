@@ -33,7 +33,7 @@
                 <div class="card-body">
                     <div class="d-flex align-items-start justify-content-between">
                         <div class="content-left">
-                            <span class="text-heading">Stok Paket Adedi</span>
+                            <span class="text-heading">Paket Adedi</span>
                             <h4 id="toplamPaket" class="mb-0 me-2">0<span style="font-size: 14px;"> Kg</span></h4>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                 <div class="card-body">
                     <div class="d-flex align-items-start justify-content-between">
                         <div class="content-left">
-                            <span class="text-heading">Sayılan Paket Adedi</span>
+                            <span class="text-heading">Ağırlık (Genel)</span>
                             <h4 id="toplamGenel" class="mb-0 me-2">0<span style="font-size: 14px;"> Kg</span></h4>
                         </div>
                     </div>
@@ -57,7 +57,7 @@
                 <div class="card-body">
                     <div class="d-flex align-items-start justify-content-between">
                         <div class="content-left">
-                            <span class="text-heading">Sayılmayan Paket Adedi</span>
+                            <span class="text-heading">Ağırlık (HR)</span>
                             <h4 id="toplamHr" class="mb-0 me-2">0<span style="font-size: 14px;"> Kg</span></h4>
                         </div>
                     </div>
@@ -69,7 +69,7 @@
                 <div class="card-body">
                     <div class="d-flex align-items-start justify-content-between">
                         <div class="content-left">
-                            <span class="text-heading">Bulunamayan Paket Adedi</span>
+                            <span class="text-heading">Ağırlık (Diğer)</span>
                             <h4 id="toplamDiger" class="mb-0 me-2">0<span style="font-size: 14px;"> Kg</span></h4>
                         </div>
                     </div>
@@ -78,7 +78,7 @@
         </div>
     </div>
 
-    
+
     <!-- Modal -->
     <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">

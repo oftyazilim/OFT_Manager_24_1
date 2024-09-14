@@ -33,19 +33,22 @@
                 <div class="card-body">
                     <div class="d-flex align-items-start justify-content-between">
                         <div class="content-left">
-                            <span class="text-heading">Sayaç</span>
+                            <span class="text-heading">Sayaç (syl/sylm/tpl)</span>
                             <h4 class="mb-0 me-2">
                                 <span id="toplamSayilanAdet" class="text-heading">0</span>
-                                <span class="text-heading"> / </span>
+                                <span class="text-heading"> + </span>
                                 <span id="sayilmayanStokAdeti" class="text-heading">0</span>
-                                <span class="text-heading"> --- </span>
-                                <span class="text-heading">0</span>
+                                <span class="text-heading"> / </span>
+                                <span id="toplam" class="text-heading">0</span>
                             </h4>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <div class="card mt-2 p-2 pb-0">
+                    <h6 id="mesaj" class="card-title text-center">Okutunuz...</h6>
+            </div>
             <div class="card mt-2">
                 <div class="card-body">
                     <h4 class="card-title">Barkod Okuma</h4>

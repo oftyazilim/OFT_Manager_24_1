@@ -1,13 +1,14 @@
 'use strict';
 import Swal from 'sweetalert2';
 import ExcelJS from 'exceljs';
+import axios from 'axios';
 
 $(function () {
-  document.getElementById('baslik').innerHTML = 'Akyazı 2. Kalite Sayım Listesi';
+  document.getElementById('baslik').innerHTML = '2. Kalite Listesi (Akyazı)';
 
   var dt_table = $('.datatables-kalite2'),
     offCanvasForm = $('#offcanvasAddRecord'),
-    filterValue = 1;
+    filterValue = 2;
 
   $.ajaxSetup({
     headers: {
@@ -57,12 +58,11 @@ $(function () {
       buttons: [
         {
           text: 'Sayım Yap',
-          className: 'sayimyap btn btn-secondary ms-1',
-
+          className: 'sayimyap btn p-2 ms-1'
         },
         {
           text: 'Tümü',
-          className: 'tumu btn btn-secondary ms-5',
+          className: 'tumu btn p-2 ms-1',
           action: function () {
             filterValue = 2; // Parametre 0 (Tümü)
             dt_record.ajax.reload();
@@ -70,7 +70,7 @@ $(function () {
         },
         {
           text: 'Sayılanlar',
-          className: 'sayilanlar btn btn-success ms-2',
+          className: 'sayilanlar btn p-2 ms-1',
           action: function () {
             filterValue = 1; // Parametre 1 (Sayılanlar)
             dt_record.ajax.reload();
@@ -78,7 +78,15 @@ $(function () {
         },
         {
           text: 'Sayılmayanlar',
-          className: 'sayilmayanlar btn btn-danger ms-2',
+          className: 'sayilmayanlar btn p-2 ms-1',
+          action: function () {
+            filterValue = 0; // Parametre 2 (Sayılmayanlar)
+            dt_record.ajax.reload();
+          }
+        },
+        {
+          text: 'Sıfırla',
+          className: 'sifirla btn p-2 ms-1',
           action: function () {
             filterValue = 0; // Parametre 2 (Sayılmayanlar)
             dt_record.ajax.reload();
@@ -91,14 +99,14 @@ $(function () {
         searchPlaceholder: 'Ara'
       },
       dom:
-      '<"row"' +
-      '<"col-12 col-md-6 d-flex align-items-center justify-content-center justify-content-md-start gap-2"l<"dt-action-buttons text-xl-end text-lg-start text-md-end text-start"B>>' +
-      '<"col-12 col-md-6 d-flex align-items-center justify-content-end flex-column flex-md-row pe-5 gap-md-4 mt-n5 mt-md-0"f>' +
-      '>t' +
-      '<"row"' +
-      '<"col-sm-12 col-md-6"i>' +
-      '<"col-sm-12 col-md-6"p>' +
-      '>',
+        '<"row"' +
+        '<"col-12 col-md-6 d-flex align-items-center justify-content-center justify-content-md-start gap-2"l<"dt-action-buttons text-xl-end text-lg-start text-md-end text-start"B>>' +
+        '<"col-12 col-md-6 d-flex align-items-center justify-content-end flex-column flex-md-row pe-5 gap-md-4 mt-n5 mt-md-0"f>' +
+        '>t' +
+        '<"row"' +
+        '<"col-sm-12 col-md-6"i>' +
+        '<"col-sm-12 col-md-6"p>' +
+        '>',
       columnDefs: [
         {
           //For Responsive
@@ -243,6 +251,7 @@ $(function () {
         },
         {
           // Actions
+          visible: false,
           targets: -1,
           searchable: false,
           responsivePriority: 4,
@@ -307,9 +316,14 @@ $(function () {
     });
   }
 
-  veriAl();
+  veriAl($('.tumu'));
 
-  function veriAl() {
+  function veriAl(buton) {
+    $('.tumu').css('background-color', 'gray');
+    $('.sayilanlar').css('background-color', 'gray');
+    $('.sayilmayanlar').css('background-color', 'gray');
+    $('.sifirla').css('background-color', 'gray');
+
     $.ajax({
       method: 'GET',
       url: baseUrl + 'stok/verialsayim',
@@ -327,27 +341,59 @@ $(function () {
         console.log(error);
       }
     });
+    buton.css('background-color', 'green');
   }
 
   $('.sayimyap').on('click', function () {
     window.location.href = '/stok-sayimyap';
   });
+
   $('.tumu').on('click', function () {
     filterValue = 2;
-    veriAl();
-    dt_table.draw;
+    veriAl($(this));
+    dt_table.draw();
   });
+
   $('.sayilanlar').on('click', function () {
     filterValue = 1;
-    veriAl();
-    dt_table.draw;
-    dt_record.draw;
+    veriAl($(this));
+    dt_table.draw();
   });
+
   $('.sayilmayanlar').on('click', function () {
     filterValue = 0;
-    veriAl();
+    veriAl($(this));
     dt_table.draw;
-    dt_record.draw;
+  });
+
+  $('.sifirla').on('click', function () {
+    axios
+      .post('/reset-sayildi')
+      .then(function (response) {
+        Swal.fire({
+          title: 'Sayım sıfırlandı',
+          text: response.data.mesaj,
+          icon: 'success',
+          confirmButtonText: 'Kapat',
+          customClass: {
+            confirmButton: 'btn btn-success'
+          }
+        });
+      })
+      .catch(function (error) {
+        Swal.fire({
+          title: 'Hata oluştu',
+          text: response.data.mesaj,
+          icon: 'error',
+          confirmButtonText: 'Kapat',
+          customClass: {
+            confirmButton: 'btn btn-success'
+          }
+        });
+      });
+    filterValue = 2;
+    veriAl($('.tumu'));
+    dt_table.draw;
   });
 
   // Filter form control to default size

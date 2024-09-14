@@ -16,26 +16,57 @@ class StokSayimController extends Controller
 
   public function sayim(Request $request)
   {
-    $barkod = $request->input('barkod');
-    $mesaj = $barkod;
+    $okuma = $request->input('okuma');
+    $sonuc = false;
 
-    // Barkodun veritabanında olup olmadığını kontrol et
-    $stok = Kalite2::where('pkno', $barkod)->first();
+    if ($okuma) {
+      $barkod = $request->input('barkod');
+      if ($barkod != '') {
+        $mesaj = $barkod;
 
-    if ($stok) {
-      // Sayıldı alanını güncelle
-      $stok->sayildi = 1;
-      $stok->save();
+        // Barkodun veritabanında olup olmadığını kontrol et
+        $stok = Kalite2::where('pkno', $barkod)->first();
+
+        if ($stok) {
+
+          if ($stok->sayildi) {
+            $mesaj = "$barkod zaten sayım yapılmış.";
+          } else {
+            // Sayıldı alanını güncelle
+            $stok->sayildi = 1;
+            $stok->save();
+            $mesaj = $barkod;
+            $sonuc = true;
+          }
+        } else {
+          $mesaj = 'Stok Bulunamadı (' . $barkod . ')';
+        }
+        return response()->json([
+          'mesaj' => $mesaj,
+          'sonuc' => $sonuc,
+        ]);
+      }
+    } else {
+      // Özet bilgileri hesapla
+      $stok = Kalite2::where('silindi', false)
+      ->where('sevk_edildi', false)
+      ->get();
+
+      $toplamSayilanAdet = $stok->where('sayildi', 1)->count();
+      $sayilmayanStokAdeti = $stok->where('sayildi', 0)->count();
+
+      return response()->json([
+        'toplamSayilanAdet' => $toplamSayilanAdet,
+        'sayilmayanStokAdeti' => $sayilmayanStokAdeti,
+      ]);
     }
-
-    // Özet bilgileri hesapla
-    $toplamSayilanAdet = Kalite2::where('sayildi', 1)->count();
-    $sayilmayanStokAdeti = Kalite2::where('sayildi', 0)->count();
-
-    return response()->json([
-      'mesaj' => $mesaj,
-      'toplamSayilanAdet' => $toplamSayilanAdet,
-      'sayilmayanStokAdeti' => $sayilmayanStokAdeti,
-    ]);
   }
+
+  public function resetSayildi(){
+    Kalite2::where('silindi', false)
+      ->where('sevk_edildi', false)
+      ->update(['sayildi' => 0]);
+
+      return response()->json(['message' => 'Stok sayildi alanları sıfırlandı.'], 200);
+    }
 }
