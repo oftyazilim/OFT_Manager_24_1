@@ -1,5 +1,5 @@
 <!-- Footer: Start -->
-<footer class="landing-footer bg-body footer-text">
+{{-- <footer class="landing-footer bg-body footer-text">
   <div class="footer-top position-relative overflow-hidden z-1">
     <img src="{{asset('assets/img/front-pages/backgrounds/footer-bg-'.$configData['style'].'.png')}}" alt="footer bg" class="footer-bg banner-bg-img z-n1" data-app-light-img="front-pages/backgrounds/footer-bg-light.png" data-app-dark-img="front-pages/backgrounds/footer-bg-dark.png" />
     <div class="container">
@@ -98,5 +98,5 @@
       </div>
     </div>
   </div>
-</footer>
+</footer> --}}
 <!-- Footer: End -->

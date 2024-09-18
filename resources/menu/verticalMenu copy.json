@@ -12,9 +12,9 @@
       "slug": "satislar",
       "submenu": [
         {
-          "url": "satislar/musteriSiparisleri",
+          "url": "satis/musteriSiparisleri",
           "name": "Müşteri Siparişleri",
-          "slug": "satislar-musteriSiparisleri"
+          "slug": "satis-musteriSiparisleri"
         }
       ]
     },
@@ -24,14 +24,14 @@
       "slug": "stoklar",
       "submenu": [
         {
-          "url": "stoklar/kalite2",
+          "url": "stoklar/kalite2liste",
           "name": "2. Kalite (Akyazı)",
-          "slug": "stoklar-kalite2"
+          "slug": "stoklar-kalite2liste"
         },
         {
-          "url": "stoklar/kalite2s",
+          "url": "stoklar/kalite2sliste",
           "name": "2. Kalite (Şekerpınar)",
-          "slug": "stoklar-kalite2s"
+          "slug": "stoklar-kalite2sliste"
         }
       ]
     },
@@ -42,22 +42,10 @@
       "slug": "kullanicilar"
     },
     {
-      "url": "/kisiler",
-      "name": "Kişiler",
-      "icon": "menu-icon tf-icons ti ti-users",
-      "slug": "kisiler"
-    },
-    {
       "url": "/roller",
       "name": "Roller",
       "icon": "menu-icon tf-icons ti ti-users",
       "slug": "roller"
-    },
-    {
-      "url": "/ayarlar",
-      "name": "Ayarlar",
-      "icon": "menu-icon tf-icons ti ti-users",
-      "slug": "ayarlar"
     }
   ]
 }

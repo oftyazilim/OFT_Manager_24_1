@@ -134,27 +134,28 @@ window.isDarkStyle = window.Helpers.isDarkStyle();
 
     // Update style switcher icon based on the stored style
 
-    const styleSwitcherIcon = styleSwitcher.querySelector('i');
+const styleSwitcherIcon = styleSwitcher.querySelector('i');
 
-    if (storedStyle === 'light') {
-      styleSwitcherIcon.classList.add('ti-sun');
-      new bootstrap.Tooltip(styleSwitcherIcon, {
-        title: 'Light Mode',
-        fallbackPlacements: ['bottom']
-      });
-    } else if (storedStyle === 'dark') {
-      styleSwitcherIcon.classList.add('ti-moon-stars');
-      new bootstrap.Tooltip(styleSwitcherIcon, {
-        title: 'Dark Mode',
-        fallbackPlacements: ['bottom']
-      });
-    } else {
-      styleSwitcherIcon.classList.add('ti-device-desktop-analytics');
-      new bootstrap.Tooltip(styleSwitcherIcon, {
-        title: 'System Mode',
-        fallbackPlacements: ['bottom']
-      });
-    }
+if (storedStyle === 'light') {
+  styleSwitcherIcon.classList.add('ti-sun');
+  new bootstrap.Tooltip(styleSwitcherIcon, {
+    title: 'Açık Mod',
+    fallbackPlacements: ['bottom']
+  });
+} else if (storedStyle === 'dark') {
+  styleSwitcherIcon.classList.add('ti-moon-stars');
+  new bootstrap.Tooltip(styleSwitcherIcon, {
+    title: 'Koyu Mod',
+    fallbackPlacements: ['bottom']
+  });
+} else {
+  styleSwitcherIcon.classList.add('ti-device-desktop-analytics');
+  new bootstrap.Tooltip(styleSwitcherIcon, {
+    title: 'Sistem Modu',
+    fallbackPlacements: ['bottom']
+  });
+}
+
   }
 
   // Run switchImage function based on the stored style

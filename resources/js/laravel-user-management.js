@@ -13,7 +13,10 @@ $(function () {
   var dt_user_table = $('.datatables-users'),
     // select2 = $('.select2'),
     userView = baseUrl + 'app/user/view/account',
-    offCanvasForm = $('#offcanvasAddUser');
+    offCanvasForm = $('#offcanvasAddUser'),
+    izinDuzenle = 1,
+    izinEkle = 1,
+    izinSil = 1;
 
   // ajax setup
   $.ajaxSetup({
@@ -36,6 +39,7 @@ $(function () {
         { data: 'id' },
         { data: 'name' },
         { data: 'email' },
+        { data: 'role' },
         { data: 'email_verified_at' },
         { data: 'action' }
       ],
@@ -106,7 +110,7 @@ $(function () {
         },
         {
           // email verify
-          targets: 4,
+          targets: 5,
           className: 'text-center',
           render: function (data, type, full, meta) {
             var $verified = full['email_verified_at'];
@@ -118,38 +122,52 @@ $(function () {
           }
         },
         {
+          // roller
+          targets: 4,
+          className: 'text-center'
+        },
+        {
           // Actions
           targets: -1,
           title: 'Eylemler',
           searchable: false,
           orderable: false,
           render: function (data, type, full, meta) {
-            return (
-              '<div class="d-flex align-items-center gap-50">' +
-              `<button class="btn btn-sm btn-icon edit-record btn-text-secondary rounded-pill waves-effect" data-id="${full['id']}" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAddUser"><i class="ti ti-edit"></i></button>` +
-              `<button class="btn btn-sm btn-icon delete-record btn-text-secondary rounded-pill waves-effect" data-id="${full['id']}"><i class="ti ti-trash"></i></button>` +
-              '<button class="btn btn-sm btn-icon btn-text-secondary rounded-pill waves-effect dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="ti ti-dots-vertical"></i></button>' +
-              '<div class="dropdown-menu dropdown-menu-end m-0">' +
-              '<a href="' +
-              userView +
-              '" class="dropdown-item">View</a>' +
-              '<a href="javascript:;" class="dropdown-item">Suspend</a>' +
-              '</div>' +
-              '</div>'
-            );
+            let editButton = '';
+            let deleteButton = '';
+
+            if (izinDuzenle) {
+              editButton = `<button class="btn btn-sm btn-icon edit-record btn-text-secondary rounded-pill waves-effect" data-id="${full['id']}" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAddUser"><i class="ti ti-edit"></i></button>`;
+            }
+
+            if (izinSil) {
+              // Eğer silme izni varsa, silme butonunu da göster
+              // Benzer şekilde izinleri kontrol edebilirsiniz
+
+              deleteButton = `<button class="btn btn-sm btn-icon delete-record btn-text-secondary rounded-pill waves-effect" data-id="${full['id']}"><i class="ti ti-trash"></i></button>`;
+            }
+            return '<div class="d-flex align-items-center gap-50">' + editButton + deleteButton + '</div>';
           }
+          // render: function (data, type, full, meta) {
+          //   return (
+          //     '<div class="d-flex align-items-center gap-50">' +
+          //     `<button class="btn btn-sm btn-icon edit-record btn-text-secondary rounded-pill waves-effect" data-id="${full['id']}" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAddUser"><i class="ti ti-edit"></i></button>` +
+          //     `<button class="btn btn-sm btn-icon delete-record btn-text-secondary rounded-pill waves-effect" data-id="${full['id']}"><i class="ti ti-trash"></i></button>` +
+          //     '</div>'
+          //   );
+          // }
         }
       ],
       order: [[2, 'desc']],
-       dom:
-         '<"row"' +
+      dom:
+        '<"row"' +
         '<"col-md-2"<"ms-n2"l>>' +
         '<"col-md-10"<"dt-action-buttons text-xl-end text-lg-start text-md-end text-start d-flex align-items-center justify-content-end flex-md-row flex-column mb-6 mb-md-0 mt-n6 mt-md-0"fB>>' +
         '>t' +
         '<"row"' +
         '<"col-sm-12 col-md-6"i>' +
         '<"col-sm-12 col-md-6"p>' +
-         '>',
+        '>',
       lengthMenu: [7, 10, 20, 50, 70, 100], //for length of menu
       language: {
         sLengthMenu: '_MENU_',
@@ -308,14 +326,26 @@ $(function () {
             }
           ]
         },
-        {
-          text: '<i class="ti ti-plus me-0 me-sm-1 ti-xs"></i><span class="d-none d-sm-inline-block">Kullanıcı Ekle</span>',
-          className: 'add-new btn btn-primary waves-effect waves-light',
-          attr: {
-            'data-bs-toggle': 'offcanvas',
-            'data-bs-target': '#offcanvasAddUser'
-          }
-        }
+        izinEkle
+          ? [
+              {
+                text: '<i class="ti ti-plus me-0 me-sm-1 ti-xs"></i><span class="d-none d-sm-inline-block">Kullanıcı Ekle</span>',
+                className: 'add-new btn btn-primary waves-effect waves-light',
+                attr: {
+                  'data-bs-toggle': 'offcanvas',
+                  'data-bs-target': '#offcanvasAddUser'
+                }
+              }
+            ]
+          : []
+        // {
+        //   text: '<i class="ti ti-plus me-0 me-sm-1 ti-xs"></i><span class="d-none d-sm-inline-block">Kullanıcı Ekle</span>',
+        //   className: 'add-new btn btn-primary waves-effect waves-light',
+        //   attr: {
+        //     'data-bs-toggle': 'offcanvas',
+        //     'data-bs-target': '#offcanvasAddUser'
+        //   }
+        // }
       ],
       // For responsive popup
       responsive: {
@@ -433,15 +463,18 @@ $(function () {
 
     // get data
     $.get(`${baseUrl}user-list\/${user_id}\/edit`, function (data) {
+      console.log(data.role);
       $('#user_id').val(data.id);
       $('#add-user-fullname').val(data.name);
       $('#add-user-email').val(data.email);
+      $('#user-role').val(data.role_id);
     });
   });
 
   // changing the title
   $('.add-new').on('click', function () {
     $('#user_id').val(''); //reseting input field
+    $('#user-role').val(''); //reseting input field
     $('#offcanvasAddUserLabel').html('Add User');
   });
 
@@ -475,20 +508,7 @@ $(function () {
           }
         }
       },
-      userContact: {
-        validators: {
-          notEmpty: {
-            message: 'Please enter your contact'
-          }
-        }
-      },
-      company: {
-        validators: {
-          notEmpty: {
-            message: 'Please enter your company'
-          }
-        }
-      }
+
     },
     plugins: {
       trigger: new FormValidation.plugins.Trigger(),

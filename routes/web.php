@@ -10,6 +10,7 @@ use App\Http\Controllers\pages\IsEmirleri;
 use App\Http\Controllers\front_pages\Landing;
 use App\Http\Controllers\laravel_example\UserManagement;
 use App\Http\Controllers\satis\SatisController;
+use App\Http\Controllers\RollerController;
 use App\Http\Controllers\stoklar\Kalite2Controller;
 use App\Http\Controllers\stoklar\Kalite2sController;
 
@@ -21,7 +22,23 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
 
   // Main Page Route
   Route::get('/home', [HomePage::class, 'index'])->name('pages-home');
+
+
   Route::get('/kullanicilar', [UserManagement::class, 'GetUser'])->name('kullanicilar');
+
+  Route::get('/roller', [RollerController::class, 'liste'])->name('roller.liste');
+  Route::resource('/rol-list', RollerController::class);
+  Route::get('/izin-al', [RollerController::class, 'izinAl']);
+
+
+// routes/web.php veya routes/api.php
+
+  // Route::get('/roller/edit/{id}', [RollerController::class, 'edit'])->name('roller.edit');
+  // Route::post('/roller/edit/{id}', [RollerController::class, 'update'])->name('roller.update');
+  // Route::get('/roller/sil/{id}', [RollerController::class, 'sil'])->name('roller.sil');
+
+
+
   Route::get('/isemirleri', [IsEmirleri::class, 'index'])->name('pages-isemirleri');
   Route::get('/table/test', [IsEmirleri::class, 'TestAl'])->name('test-al');
 
@@ -32,6 +49,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
   // authentication
   Route::get('/auth/login-basic', [LoginBasic::class, 'index'])->name('auth-login-basic');
   Route::get('/auth/register-basic', [RegisterBasic::class, 'index'])->name('auth-register-basic');
+
   Route::resource('/user-list', UserManagement::class);
   Route::resource('/emir-list', IsEmirleri::class);
   Route::resource('/satis-list', SatisController::class);
@@ -45,14 +63,14 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
   Route::resource('/stok-list', Kalite2Controller::class);
   Route::get('/stok/verial', [Kalite2Controller::class, 'veriAl']);
   Route::get('/export/excel', [Kalite2Controller::class, 'exportExcel']);
-  
-  
+
+
   // 2. Kaliteler - Şekerpınar
   Route::get('/stoklar/kalite2sliste', [Kalite2sController::class, 'getKalite2liste'])->name('stoklar.kalite2sliste');
   Route::resource('/stok-lists', Kalite2sController::class);
   Route::get('/stok/verials', [Kalite2sController::class, 'veriAl']);
   Route::get('/export/excels', [Kalite2sController::class, 'exportExcel']);
-  
+
   // Dashboard
   Route::get('/dashboard/verial', [HomePage::class, 'veriAl']);
 

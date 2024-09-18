@@ -5,8 +5,12 @@ namespace App\Http\Controllers\laravel_example;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\RolModel;
+use App\Models\PermissionRoleModel;
 use Illuminate\Support\Str;
+
 
 class UserManagement extends Controller
 {
@@ -15,16 +19,20 @@ class UserManagement extends Controller
     //dd('UserManagement');
     $users = User::all();
     $userCount = $users->count();
-    $verified = User::whereNotNull('email_verified_at')->get()->count();
-    $notVerified = User::whereNull('email_verified_at')->get()->count();
-    $usersUnique = $users->unique(['email']);
-    $userDuplicates = $users->diff($usersUnique)->count();
+    $data['rolAl'] = RolModel::all(); // Rol listesini almak için
+    // $verified = User::whereNotNull('email_verified_at')->get()->count();
+    // $notVerified = User::whereNull('email_verified_at')->get()->count();
+    // $usersUnique = $users->unique(['email']);
+    // $userDuplicates = $users->diff($usersUnique)->count();
+
+
 
     return view('content.pages.kullanicilar', [
       'totalUser' => $userCount,
-      'verified' => $verified,
-      'notVerified' => $notVerified,
-      'userDuplicates' => $userDuplicates,
+      'rolAl' => $data['rolAl'],
+      // 'verified' => $verified,
+      // 'notVerified' => $notVerified,
+      // 'userDuplicates' => $userDuplicates,
     ]);
   }
 
@@ -34,7 +42,8 @@ class UserManagement extends Controller
       1 => 'id',
       2 => 'name',
       3 => 'email',
-      4 => 'email_verified_at',
+      4 => 'role',
+      5 => 'email_verified_at',
     ];
 
     $search = [];
@@ -81,6 +90,7 @@ class UserManagement extends Controller
         $nestedData['fake_id'] = ++$ids;
         $nestedData['name'] = $user->name;
         $nestedData['email'] = $user->email;
+        $nestedData['role'] = $user->role;
         $nestedData['email_verified_at'] = $user->email_verified_at;
 
         $data[] = $nestedData;
@@ -123,32 +133,45 @@ class UserManagement extends Controller
   public function store(Request $request)
   {
     $userID = $request->id;
+    $roleName = RolModel::select('name')
+    ->where('id', $request->role_id)
+    ->first();
 
-    if ($userID) {
-      // update the value
-      $users = User::updateOrCreate(
-        ['id' => $userID],
-        ['name' => $request->name, 'email' => $request->email]
-      );
 
-      // user updated
-      return response()->json('Updated');
+      if ($roleName) {
+        if ($userID) {
+            $users = User::updateOrCreate(
+                ['id' => $userID],
+                [
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'role' => $roleName->name,
+                    'role_id' => $request->role_id
+                ]
+            );
+
+            return response()->json('Updated');
+        } else {
+            $userEmail = User::where('email', $request->email)->first();
+
+            if (empty($userEmail)) {
+                $users = User::create(
+                    [
+                        'name' => $request->name,
+                        'email' => $request->email,
+                        'password' => bcrypt(Str::random(10)),
+                        'role' => $request->role_id
+                    ]
+                );
+
+
+                return response()->json('Created');
+            } else {
+                return response()->json(['message' => "already exists"], 422);
+            }
+        }
     } else {
-      // create new one if email is unique
-      $userEmail = User::where('email', $request->email)->first();
-
-      if (empty($userEmail)) {
-        $users = User::updateOrCreate(
-          ['id' => $userID],
-          ['name' => $request->name, 'email' => $request->email, 'password' => bcrypt(Str::random(10))]
-        );
-
-        // user created
-        return response()->json('Created');
-      } else {
-        // user already exist
-        return response()->json(['message' => "already exits"], 422);
-      }
+        return response()->json(['message' => 'Role not found'], 404);
     }
   }
 
@@ -172,6 +195,7 @@ class UserManagement extends Controller
   public function edit($id): JsonResponse
   {
     $user = User::findOrFail($id);
+
     return response()->json($user);
   }
 
@@ -182,10 +206,7 @@ class UserManagement extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function update(Request $request, $id)
-  {
-
-  }
+  public function update(Request $request, $id) {}
 
   /**
    * Remove the specified resource from storage.

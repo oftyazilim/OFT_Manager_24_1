@@ -6,8 +6,7 @@ import ExcelJS from 'exceljs';
 $(function () {
   document.getElementById('baslik').innerHTML = 'Akyazı 2. Kalite Stok Listesi';
 
-  var dt_table = $('.datatables-kalite2'),
-    offCanvasForm = $('#offcanvasAddRecord');
+  var dt_table = $('.datatables-kalite2'), offCanvasForm = $('#offcanvasAddRecord');
 
   $.ajaxSetup({
     headers: {
@@ -334,7 +333,7 @@ $(function () {
     }).then(function (result) {
       if (result.value) {
         // delete the data
-        alert(temp_id);
+        //alert(temp_id);
         $.ajax({
           type: 'DELETE',
           url: `${baseUrl}stok-list/${temp_id}`,

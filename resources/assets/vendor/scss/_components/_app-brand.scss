@@ -9,8 +9,9 @@
   flex-shrink: 0;
   overflow: hidden;
   line-height: 1;
-  min-height: 1px;
+  min-height: 20px;
   align-items: center;
+  padding: 5px;
 }
 // For cover auth pages
 .auth-cover-brand {
@@ -28,11 +29,14 @@
   flex-grow: 0;
   flex-shrink: 0;
   overflow: hidden;
-  min-height: 1px;
+  min-height: 50px; /* Minimum yüksekliği logo boyutuna göre ayarlayın */
+  min-width: 60px;
 
   img,
   svg {
     display: block;
+    height: 58px; /* Logonun yüksekliğini ayarlayın */
+    width: auto;
   }
 }
 

@@ -25,10 +25,14 @@ class User extends Authenticatable  implements MustVerifyEmail
      *
      * @var array<int, string>
      */
+    protected $table = 'users'; // Tablo adı belirtildi
+
     protected $fillable = [
         'name',
         'email',
         'password',
+        'role',
+        'role_id',
     ];
 
     /**
@@ -64,4 +68,21 @@ class User extends Authenticatable  implements MustVerifyEmail
             'password' => 'hashed',
         ];
     }
+
+    static public function tekKayitAl($id)
+    {
+        return self::find($id);
+    }
+
+    static public function kayitAl()
+    {
+        return User::select('users.*', 'rol.name as rol_adi')
+                    ->join('rol', 'rol.id', '=' , 'users.role_id')
+                    ->orderBy('users.id', 'desc')->get();
+    }
+    // App\Models\User.php
+public function rol()
+{
+    return $this->belongsTo(RolModel::class, 'role_id');
+}
 }
